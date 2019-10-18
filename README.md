@@ -1,4 +1,4 @@
-# bendystraws_chenT-caiK-jamalK-pehlivanianL
+# bendystraws_caiK-chenT-jamalK-pehlivanianL
 ## Roster and Role:
 - Kevin Cai ( )
 - Tammy Chen (Project Manager, )
