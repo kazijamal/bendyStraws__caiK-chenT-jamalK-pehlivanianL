@@ -1,2 +1,8 @@
+chenT -- 2019-10-18 14:30
+Linked submodule.
+
 jamalK -- 2019-10-18 14:19
-Set up GitHub repository, added submodule, and created devlog.
+Set up GitHub repository.
+
+chenT -- 2019-10-17 14:15
+Team bendyStraws formed, chose collaborative storytelling game/website project, and Tammy Chen chosen as project manager.
