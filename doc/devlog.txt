@@ -27,3 +27,11 @@ LEFT JOIN:
 CROSS JOIN:
 - When using CROSS JOIN on a table A with N rows and a table B with M rows, it returns the Cartesian product, a result set that contains N*M rows.
 - We do not see a use for CROSS JOIN at the time being.
+
+chenT -- 2019-10-21 23:16
+Our team found it interesting that programming is not something the human brain is fit for, but it is still a very popular career. It is also fascinating how employees at large companies, and anyone working to keep the internet functioning has to deal with errors to prevent the entire operation from collapsing.
+Concrete actions we will take or procedures/protocols we will observe to make more awesome:
+- Understand a comprehensive design plan prior to beginning work on the technical side of things
+- If there is an issue or technical error, be sure to communicate it clearly with the team instead of using a hacky solution temporarily
+- The InterTubes™ is a dangerous place. Be cautious when parsing - most of the time, utilize what you know! 
+
