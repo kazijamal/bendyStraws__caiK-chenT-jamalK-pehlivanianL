@@ -1,3 +1,6 @@
+chenT -- 2019-10-20 20:20
+Updated design.pdf based off of feedback given by peers during class. Added a project objective section, confirm password section in site component map & made site map clearer by adding a legend (defining the use of color).
+
 chenT -- 2019-10-20 22:58 
 Team bendyStraws has adjusted the margins of the design.pdf & uploaded it again. Encountered some unnecessary files (.DS_Store) being uploaded so team has added a .gitignore. 
 
