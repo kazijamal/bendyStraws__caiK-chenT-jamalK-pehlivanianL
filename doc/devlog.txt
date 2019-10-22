@@ -1,17 +1,29 @@
-chenT -- 2019-10-20 20:20
-Updated design.pdf based off of feedback given by peers during class. Added a project objective section, confirm password section in site component map & made site map clearer by adding a legend (defining the use of color).
-
-chenT -- 2019-10-20 22:58 
-Team bendyStraws has adjusted the margins of the design.pdf & uploaded it again. Encountered some unnecessary files (.DS_Store) being uploaded so team has added a .gitignore. 
-
-chenT -- 2019-10-20 22:45
-Team bendyStraws has finished the design.pdf & uploaded it to github repository. Project name has been decided (Odyssey) as it portends greatness like the team name. 
-
-chenT -- 2019-10-18 14:30
-Linked submodule.
+chenT -- 2019-10-17 14:15
+Team bendyStraws formed, chose collaborative storytelling game/website project, and Tammy Chen chosen as project manager.
 
 jamalK -- 2019-10-18 14:19
 Set up GitHub repository.
 
-chenT -- 2019-10-17 14:15
-Team bendyStraws formed, chose collaborative storytelling game/website project, and Tammy Chen chosen as project manager.
+chenT -- 2019-10-18 14:30
+Linked submodule.
+
+chenT -- 2019-10-20 22:45
+Team bendyStraws has finished the design.pdf & uploaded it to github repository. Project name has been decided (Odyssey) as it portends greatness like the team name. 
+
+chenT -- 2019-10-20 22:58 
+Team bendyStraws has adjusted the margins of the design.pdf & uploaded it again. Encountered some unnecessary files (.DS_Store) being uploaded so team has added a .gitignore. 
+
+chenT -- 2019-10-21 20:20
+Updated design.pdf based off of feedback given by peers during class. Added a project objective section, confirm password section in site component map & made site map clearer by adding a legend (defining the use of color).
+
+jamalK -- 2019-10-21 23:14
+INNER JOIN:
+- When using INNER JOIN on a table A with a table B, it returns rows from the A table that have a corresponding row in the B table (using a foreign key f that is a column in both A and B).
+- Can be used to find if a user edited a story by using INNER JOIN on the Story Masterlist table and the user’s User-Edits table with the story ID as a foreign key
+LEFT JOIN:
+- When using LEFT JOIN on a left table A with a right table B, it returns rows from the A table that have a corresponding row in the B table, and the rows without corresponding rows in the B table are filled with NULL values (all rows in table A are included).
+- Can be helpful to find rows available in the left table without corresponding rows in the right table.
+- We may change the User-Edits table to only contain records for stories the user edited, and then use LEFT JOIN on the Story Masterlist table and the user’s User-Edits table with the story ID as a foreign key to find the stories the user did not edit
+CROSS JOIN:
+- When using CROSS JOIN on a table A with N rows and a table B with M rows, it returns the Cartesian product, a result set that contains N*M rows.
+- We do not see a use for CROSS JOIN at the time being.
