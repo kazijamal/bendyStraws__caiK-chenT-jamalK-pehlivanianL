@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Create Story{% endblock %}
+{% block body %}
+<h1>Create a New Story</h1>
+<form action="/newstory" method="POST">
+  <label for="title">Username</label>
+  <input type="text" name="title">
+  <br>
+  <label for="content">Content</label>
+  <textarea rows="8" name="content">
+    Enter story content here.
+  </textarea>
+</form>
+{% endblock %}
