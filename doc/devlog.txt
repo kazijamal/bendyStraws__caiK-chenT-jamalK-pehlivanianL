@@ -36,6 +36,6 @@ Concrete actions we will take or procedures/protocols we will observe to make mo
 - The InterTubes™ is a dangerous place. Be cautious when parsing - most of the time, utilize what you know!
 
 caiK -- 2019-10-22 11:56
-We are planning to change the User-Edits table to only contain records for stories the user edited, and then use LEFT JOIN on the Story Masterlist, most likely like this:
+We are planning to change the User-Edits table to only contain records for stories the user edited as a primary key, and then use LEFT JOIN on the Story Masterlist, most likely like this:
 SELECT masterlist.ID FROM Masterlist e1 LEFT JOIN User-Edits e2 ON e1.ID = e2.ID WHERE e2.ID IS NULL
 This gets all the stories that the user hasn't edited.
