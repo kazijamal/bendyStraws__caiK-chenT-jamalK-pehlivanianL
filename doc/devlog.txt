@@ -26,7 +26,7 @@ LEFT JOIN:
 - We may change the User-Edits table to only contain records for stories the user edited, and then use LEFT JOIN on the Story Masterlist table and the user’s User-Edits table with the story ID as a foreign key to find the stories the user did not edit
 CROSS JOIN:
 - When using CROSS JOIN on a table A with N rows and a table B with M rows, it returns the Cartesian product, a result set that contains N*M rows.
-- We do not see a use for CROSS JOIN at the time being.
+- We do not see a use for CROSS JOIN for the time being.
 
 chenT -- 2019-10-21 23:16
 Our team found it interesting that programming is not something the human brain is fit for, but it is still a very popular career. It is also fascinating how employees at large companies, and anyone working to keep the internet functioning has to deal with errors to prevent the entire operation from collapsing.
