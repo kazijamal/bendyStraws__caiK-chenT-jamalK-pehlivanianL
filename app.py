@@ -17,10 +17,10 @@ def login():
 
 @app.route("/welcome")
 def welcome():
-if "in" in session: #if you're already logged in
-    return redirect('/welcome')
-else:
-    return render_template('login.html') #else load the login template
+    if "in" in session: #if you're already logged in
+        return redirect('/welcome')
+    else:
+        return render_template('login.html') #else load the login template
 
 # page for creating a new story
 @app.route("/createstory")
