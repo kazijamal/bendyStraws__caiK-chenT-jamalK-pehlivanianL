@@ -1,10 +1,26 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, session
 
 app = Flask(__name__)
 
 @app.route("/")
 def root():
-    return __name__;
+    if "in" in session: #if you've already logged in
+        return redirect("/welcome")
+    else: #if not, redirect to login page
+        return redirect("/login")
+
+@app.route("/login") #login page
+def login():
+    if "in" in session: #if you're already logged in
+        return redirect('/welcome') #else load the login template
+    return render_template('login.html')
+
+@app.route("/welcome")
+def welcome():
+if "in" in session: #if you're already logged in
+    return redirect('/welcome')
+else:
+    return render_template('login.html') #else load the login template
 
 # page for creating a new story
 @app.route("/createstory")
