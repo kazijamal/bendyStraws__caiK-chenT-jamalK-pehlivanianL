@@ -50,3 +50,6 @@ pehlivanianL -- 2019-10-22 22:52
 Team bendyStraws discussed different approaches to storing story data. We had previously planned to have an individual table for each story containing its edits, but after a lengthy discussion decided to change this structure to have one master story_edits table.
 This table will contain all edits to all stories, with their unique timestamp so that we can later sort these entries to obtain the complete story, or retreive the latest edit.
 We updated the database explanations and examples to reflect this change.
+
+chenT -- 2019-10-23 14:12
+Started to work on authentication (user login) & fixed a slight indentation error
