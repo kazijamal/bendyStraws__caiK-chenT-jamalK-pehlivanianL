@@ -42,3 +42,6 @@ This gets all the stories that the user hasn't edited.
 
 jamalK -- 2019-10-22 14:36
 Added Flask starter template with app.py and templates folder with a base.html and miscellaneous pages.
+
+jamalK -- 2019-10-22 14:45
+Created createstory.html template and added routes for creating a new story to app.py.
