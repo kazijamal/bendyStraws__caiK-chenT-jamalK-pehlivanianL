@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 DB_FILE = "odyssey.db"
 
-db = sqlite3.connect(DB_FILE) # open if file exists, otherwise create
-c = db.cursor() # facilitate db operations
+db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
+c = db.cursor() #facilitate db operations
 
 @app.route("/")
 def root():
@@ -29,14 +29,17 @@ def welcome():
     else:
         return render_template('login.html') #else load the login template
 
-# page for creating a new story
+#page for creating a new story
 @app.route("/createstory")
 def createStory():
     return render_template("createstory.html")
 
-# route for creating a new story
+#route for creating a new story
 @app.route("/newstory", methods=['POST'])
 def newStory():
+    title = request.form['title']
+    content = request.form['content']
+    username = session['userid']
     return "new story route"
 
 if __name__ == "__main__":
