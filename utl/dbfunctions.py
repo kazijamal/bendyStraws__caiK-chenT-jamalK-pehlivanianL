@@ -18,14 +18,6 @@ def createStory(c, title, content, userID):
     addToStory(storyID, content, userID)
     storyID += 1
     
-# DEBUG:
-def debugAdd():
-    createStory("HelloWorld","hi",0)
-    addToStory(2," world", 5)
-    debugPrintSelect("story_edits")
-    print(str(getContributedStories(5)))
-    print(str(getNotContributedStories(5)))
-    
 def debugPrintSelect(c, table):
     c.execute("SELECT * FROM "+table)
     print(str(c.fetchall()) + "\n")
