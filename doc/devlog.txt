@@ -8,10 +8,10 @@ chenT -- 2019-10-18 14:30
 Linked submodule.
 
 chenT -- 2019-10-20 22:45
-Team bendyStraws has finished the design.pdf & uploaded it to github repository. Project name has been decided (Odyssey) as it portends greatness like the team name. 
+Team bendyStraws has finished the design.pdf & uploaded it to github repository. Project name has been decided (Odyssey) as it portends greatness like the team name.
 
-chenT -- 2019-10-20 22:58 
-Team bendyStraws has adjusted the margins of the design.pdf & uploaded it again. Encountered some unnecessary files (.DS_Store) being uploaded so team has added a .gitignore. 
+chenT -- 2019-10-20 22:58
+Team bendyStraws has adjusted the margins of the design.pdf & uploaded it again. Encountered some unnecessary files (.DS_Store) being uploaded so team has added a .gitignore.
 
 chenT -- 2019-10-21 20:20
 Updated design.pdf based off of feedback given by peers during class. Added a project objective section, confirm password section in site component map & made site map clearer by adding a legend (defining the use of color).
@@ -45,3 +45,8 @@ Added Flask starter template with app.py and templates folder with a base.html a
 
 jamalK -- 2019-10-22 14:45
 Created createstory.html template and added routes for creating a new story to app.py.
+
+pehlivanianL -- 2019-10-22 22:52
+Team bendyStraws discussed different approaches to storing story data. We had previously planned to have an individual table for each story containing its edits, but after a lengthy discussion decided to change this structure to have one master story_edits table.
+This table will contain all edits to all stories, with their unique timestamp so that we can later sort these entries to obtain the complete story, or retreive the latest edit.
+We updated the database explanations and examples to reflect this change.
