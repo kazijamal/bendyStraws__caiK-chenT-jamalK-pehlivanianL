@@ -1,6 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+import sqlite3
+from utl import dbfunctions
 
 app = Flask(__name__)
+
+DB_FILE = "odyssey.db"
+
+db = sqlite3.connect(DB_FILE) # open if file exists, otherwise create
+c = db.cursor() # facilitate db operations
 
 @app.route("/")
 def root():
@@ -35,3 +42,6 @@ def newStory():
 if __name__ == "__main__":
     app.debug = True
     app.run()
+
+db.commit()
+db.close()
