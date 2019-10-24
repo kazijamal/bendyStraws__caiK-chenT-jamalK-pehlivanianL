@@ -10,7 +10,6 @@ db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
 c = db.cursor() #facilitate db operations
 dbfunctions.createTables(c)
 
-storyID = 1
 
 @app.route("/")
 def root():
@@ -43,7 +42,7 @@ def newStory():
     title = request.form['title']
     content = request.form['content']
     userID = session['userid']
-    storyID = dbcreatefunctions(c, storyID, title, content, userID)
+    storyID = dbcreatefunctions.createStory(c, title, content, userID)
     return redirect("/story/{}".format(storyID))
 
 if __name__ == "__main__":
