@@ -51,6 +51,9 @@ Team bendyStraws discussed different approaches to storing story data. We had pr
 This table will contain all edits to all stories, with their unique timestamp so that we can later sort these entries to obtain the complete story, or retreive the latest edit.
 We updated the database explanations and examples to reflect this change.
 
+pehlivanianL -- 2019-10-23 00:01
+Started creating databases and started on preliminary functions and data structure.
+
 chenT -- 2019-10-23 14:12
 Started to work on authentication (user login) & fixed a slight indentation error
 
