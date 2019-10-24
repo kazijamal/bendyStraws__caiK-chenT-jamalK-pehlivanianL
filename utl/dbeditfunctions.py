@@ -1,7 +1,7 @@
-from utl import dbfunctions
+from utl import dbcreatefunctions,dbfunctions
 
 #EDIT STORIES
-def addToStory(c, storyID, content, userID):
+def addToStory(c, storyID, userID,content):
     c.execute("INSERT INTO story_edits VALUES (?, ?, ?, NULL)", (storyID, userID, content))
 
 
@@ -15,9 +15,10 @@ def getNotContributedStories(c, userID):
     return c.fetchall()
 
 # DEBUG:
-def debugAdd():
-    dbfunctions.createStory("HelloWorld","hi",0)
-    addToStory(2," world", 5)
-    debugPrintSelect("story_edits")
-    print(str(getContributedStories(5)))
-    print(str(getNotContributedStories(5)))
+def debugAdd(c):
+    dbcreatefunctions.createStory(c,"HelloWorld","hi",0)
+    dbcreatefunctions.createStory(c,"HelloWorxd","hi",5)
+    addToStory(c,1," world", 5)
+    dbfunctions.debugPrintSelect(c,"story_edits")
+    print(str(getContributedStories(c,5)))
+    print(str(getNotContributedStories(c,5)))

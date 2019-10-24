@@ -49,6 +49,6 @@ def newStory():
 if __name__ == "__main__":
     app.debug = True
     app.run()
-
+dbeditfunctions.debugAdd(c);
 db.commit()
 db.close()
