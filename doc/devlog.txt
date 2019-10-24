@@ -67,3 +67,6 @@ Separated dbfunctions.py into 2 different files in order to prevent merge confli
 jamalK -- 2019-10-22-21:48
 Removed hyphens from filenames of files in utl folder and created dbcreatefunctions.py.
 Updated newStory() by calling functions from dbcreatefunctions.py and redirecting to the story.
+
+caiK -- 2019-10-22 14:17
+Fixed some broken code from separating the files (There were no imports to other dbfunction files in dbeditfunction.py)
