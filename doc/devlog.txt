@@ -59,4 +59,8 @@ Created utl folder with __init__.py and dbfunctions.py (modified version of old 
 
 
 caiK -- 2019-10-22 14:48
-Separated dbfunctions.py into 2 different files in order to prevent merge conflicts, changed imports to make it work.
+Separated dbfunctions.py into 2 different files in order to prevent merge conflicts and changed imports to make it work.
+
+jamalK -- 2019-10-22-21:48
+Removed hyphens from filenames of files in utl folder and created dbcreatefunctions.py.
+Updated newStory() by calling functions from dbcreatefunctions.py and redirecting to the story.
