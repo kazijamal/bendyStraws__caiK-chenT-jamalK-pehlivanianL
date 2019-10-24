@@ -1,14 +1,11 @@
 # from utl import dbeditfunctions
 
 def createTables(c):
-    c.execute("DROP TABLE IF EXISTS stories");
     c.execute("CREATE TABLE IF NOT EXISTS stories (storyID INTEGER PRIMARY KEY, name TEXT)");
 
-    c.execute("DROP TABLE IF EXISTS story_edits");
     c.execute("CREATE TABLE IF NOT EXISTS story_edits (storyID INTEGER, userID INTEGER, content TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)");
 
-    c.execute("DROP TABLE IF EXISTS users");
-    c.execute("CREATE TABLE IF NOT EXISTS users (userID INTEGER, username TEXT, password TEXT)");
+    c.execute("CREATE TABLE IF NOT EXISTS users (userID INTEGER PRIMARY KEY, username TEXT, password TEXT)");
 
 #returns an array with all values from a given story's row in table.
 #find this story by its id
@@ -28,11 +25,11 @@ def getLatestStoryEdit(c, storyID):
 
 #returns an array with entire table as data.
 def getTable(c, table):
-    c.execute("SELECT * FROM '%s'", % ("table"))
+    c.execute("SELECT * FROM " + table)
     return c.fetchall()
 
 def debugPrintSelect(c, table):
-    c.execute("SELECT * FROM '%s'", % ("table"))
+    c.execute("SELECT * FROM " + table)
     print(str(c.fetchall()) + "\n")
 
 #TESTING !!
@@ -45,6 +42,6 @@ db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
 c = db.cursor() #facilitate db operations
 createTables(c)
 
-debugPrintSelect(c, stories)
-debugPrintSelect(c, story_edits)
-debugPrintSelect(c, users)
+debugPrintSelect(c, "stories")
+debugPrintSelect(c, "story_edits")
+debugPrintSelect(c, "users")

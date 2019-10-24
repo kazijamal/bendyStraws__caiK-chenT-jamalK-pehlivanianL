@@ -1,18 +1,21 @@
 {% extends "base.html" %}
-{% block title %}Login{% endblock %}
+{% block title %}Sign Up{% endblock %}
 {% block body %}
-<h1>Login</h1>
+<h1>Sign Up</h1>
 {% for message in get_flashed_messages() %}
 <i>{{ message }}</i><br>
 {% endfor %}
-<form action="/auth" method="POST">
+<form action="/register" method="POST">
     <label for="username">Username</label>
     <input type="text" name="username">
     <br>
     <label for="password">Password</label>
     <input type="password" name="password">
     <br>
-    <input type="submit" name="login-button" value="Log In">
-    <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+    <label for="password2">Confirm Password</label>
+    <input type="password" name="password2">
+    <br>
+    <input type="submit" name="register-button" value="Sign Up">
+    <p>Already have an account? <a href="/login">Log In</a></p>
 </form>
 {% endblock %}

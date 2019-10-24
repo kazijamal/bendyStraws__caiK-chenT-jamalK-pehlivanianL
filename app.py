@@ -12,7 +12,6 @@ db = sqlite3.connect(DB_FILE, check_same_thread=False) #open if file exists, oth
 c = db.cursor() #facilitate db operations
 dbfunctions.createTables(c)
 
-
 def checkAuth():
     if "userID" in session:
         return True
@@ -22,15 +21,34 @@ def checkAuth():
 @app.route("/")
 def root():
     if checkAuth(): #if you've already logged in
-        return redirect("/welcome")
+        return redirect(url_for("welcome"))
     else: #if not, redirect to login page
-        return redirect("/login")
+        return redirect(url_for("login"))
 
 @app.route("/login") #login page
 def login():
     if checkAuth(): #if you're already logged in
-        return redirect('/welcome') #else load the login template
+        return redirect(url_for('welcome'))
     return render_template('login.html')
+
+@app.route("/signup") #signup page
+def signup():
+    if checkAuth():
+        return redirect('/welcome')
+    return render_template('signup.html')
+
+@app.route("/register", methods=["POST"])
+def register():
+    username = request.form['username']
+    password = request.form['password']
+    password2 = request.form['password2']
+    if password != password2:
+        flash("Passwords do not match")
+        return redirect(url_for('signup'))
+    else:
+        c.execute("INSERT INTO users VALUES (NULL, ?, ?)", (username, password))
+        flash("Successfuly created user")
+        return redirect(url_for('login'))
 
 @app.route("/auth", methods=["POST"])
 def auth():
@@ -82,6 +100,7 @@ def newStory():
 if __name__ == "__main__":
     app.debug = True
     app.run()
+    
 dbeditfunctions.debugAdd(c);
 db.commit()
 db.close()
