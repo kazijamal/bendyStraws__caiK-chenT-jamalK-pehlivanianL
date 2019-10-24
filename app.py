@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
-from utl import dbfunctions
+from utl import dbfunctions, dbeditfunctions, dbcreatefunctions
 
 app = Flask(__name__)
 
@@ -8,6 +8,8 @@ DB_FILE = "odyssey.db"
 
 db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
 c = db.cursor() #facilitate db operations
+
+storyID = 1
 
 @app.route("/")
 def root():
@@ -39,8 +41,9 @@ def createStory():
 def newStory():
     title = request.form['title']
     content = request.form['content']
-    username = session['userid']
-    return "new story route"
+    userID = session['userid']
+    storyID = dbcreatefunctions(c, storyID, title, content, userID)
+    return redirect("/story/{}".format(storyID))
 
 if __name__ == "__main__":
     app.debug = True

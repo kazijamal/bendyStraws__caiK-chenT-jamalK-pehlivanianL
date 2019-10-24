@@ -1,4 +1,5 @@
 from utl import dbfunctions
+
 #EDIT STORIES
 def addToStory(c, storyID, content, userID):
     c.execute("INSERT INTO story_edits VALUES (?, ?, ?, NULL)", (storyID, userID, content))
