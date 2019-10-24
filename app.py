@@ -8,6 +8,7 @@ DB_FILE = "odyssey.db"
 
 db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
 c = db.cursor() #facilitate db operations
+dbfunctions.createTables(c)
 
 storyID = 1
 
