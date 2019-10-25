@@ -60,7 +60,6 @@ Started to work on authentication (user login) & fixed a slight indentation erro
 jamalK -- 2019-10-22 14:38
 Created utl folder with __init__.py and dbfunctions.py (modified version of old database.py).
 
-
 caiK -- 2019-10-22 14:48
 Separated dbfunctions.py into 2 different files in order to prevent merge conflicts and changed imports to make it work.
 
@@ -74,3 +73,6 @@ Fixed some broken code from separating the files (There were no imports to other
 jamalK -- 2019-10-24 14:48
 Added working auth and logout routes.
 Created signup page and route, and working register route.
+
+chenT -- 2019-10-24 23:15
+Updated README.md with clear instructions about how to run the project (task the toid assignment)
