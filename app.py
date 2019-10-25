@@ -102,7 +102,7 @@ def createStory():
 def newStory():
     title = request.form['title']
     content = request.form['content']
-    userID = session['userid']
+    userID = session['userID']
     storyID = dbcreatefunctions.createStory(c, title, content, userID)
     return redirect('/story/{}'.format(storyID))
 
