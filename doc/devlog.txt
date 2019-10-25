@@ -76,3 +76,6 @@ Created signup page and route, and working register route.
 
 chenT -- 2019-10-24 23:15
 Updated README.md with clear instructions about how to run the project (task the toid assignment)
+
+chenT -- 2019-10-25 11:36
+Updated README.md with instructions about git clone

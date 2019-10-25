@@ -15,6 +15,12 @@
 $ pip install flask
 ```
 
+#### To clone the project: 
+```console
+$  git clone git@github.com:kazijamal/bendyStraws__caiK-chenT-jamalK-pehlivanianL.git
+```
+
+
 #### To run the project: 
 ```console
 $ python app.py 
