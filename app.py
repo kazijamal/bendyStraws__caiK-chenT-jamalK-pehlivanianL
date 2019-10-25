@@ -82,6 +82,13 @@ def home():
     else:
         return redirect(url_for('login'))
 
+@app.route("/story/<storyID>")
+def readStory(storyID):
+    if checkAuth():
+        return render_template('story.html')
+    else:
+        return redirect(url_for('login'))
+
 #page for creating a new story
 @app.route("/createstory")
 def createStory():
