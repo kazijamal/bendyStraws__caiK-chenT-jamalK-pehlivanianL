@@ -6,7 +6,10 @@ def createTables(c):
     c.execute("CREATE TABLE IF NOT EXISTS story_edits (storyID INTEGER, userID INTEGER, content TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)");
 
     c.execute("CREATE TABLE IF NOT EXISTS users (userID INTEGER PRIMARY KEY, username TEXT, password TEXT)");
-
+def dropTables(c):
+    c.execute("DROP TABLE IF EXISTS stories")
+    c.execute("DROP TABLE IF EXISTS story_edits")
+    c.execute("DROP TABLE IF EXISTS users")
 #returns an array with all values from a given story's row in table.
 #find this story by its id
 def selectStory(c, storyID):
@@ -34,14 +37,14 @@ def debugPrintSelect(c, table):
 
 #TESTING !!
 
-import sqlite3
-
-DB_FILE = "odyssey.db"
-
-db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
-c = db.cursor() #facilitate db operations
-createTables(c)
-
-debugPrintSelect(c, "stories")
-debugPrintSelect(c, "story_edits")
-debugPrintSelect(c, "users")
+# import sqlite3
+#
+# DB_FILE = "odyssey.db"
+#
+# db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
+# c = db.cursor() #facilitate db operations
+# createTables(c)
+#
+# debugPrintSelect(c, "stories")
+# debugPrintSelect(c, "story_edits")
+# debugPrintSelect(c, "users")

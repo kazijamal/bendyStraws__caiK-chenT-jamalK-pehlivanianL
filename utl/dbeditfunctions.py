@@ -16,6 +16,8 @@ def getNotContributedStories(c, userID):
 
 # DEBUG:
 def debugAdd(c):
+    dbfunctions.dropTables(c)
+    dbfunctions.createTables(c)
     dbcreatefunctions.createStory(c,"HelloWorld",0,"hi")
     dbcreatefunctions.createStory(c,"HelloWorxd",0,"test")
     addToStory(c,1,5," world")
