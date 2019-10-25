@@ -79,3 +79,8 @@ Updated README.md with clear instructions about how to run the project (task the
 
 chenT -- 2019-10-25 11:36
 Updated README.md with instructions about git clone
+
+jamalK -- 2019-10-25 17:39
+Created working story/<storyID> route that allows users to read full stories.
+Added username column to story_edits table to simplify showing users on story/<storyID> route.
+Added button on home page to create a new story.

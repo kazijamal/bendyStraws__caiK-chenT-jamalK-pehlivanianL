@@ -1,8 +1,4 @@
 from utl import dbeditfunctions
-storyID = 1
-def createStory(c, title, userID, content):
-    global storyID
+def createStory(c, storyID, title, content, userID, username):
     c.execute("INSERT INTO stories VALUES (NULL, ?)", (title, ))
-    dbeditfunctions.addToStory(c,storyID, userID, content)
-    storyID += 1
-    return storyID + 1
+    dbeditfunctions.addToStory(c, storyID, userID, username, content)

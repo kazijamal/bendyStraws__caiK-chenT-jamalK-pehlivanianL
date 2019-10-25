@@ -5,7 +5,10 @@
 {% for message in get_flashed_messages() %}
 <i>{{ message }}</i><br>
 {% endfor %}
+<form action="/createstory">
+  <input type="submit" name="create-story-button" value="Create a New Story"/>
+</form>
 <form action="/logout">
-    <input type="submit" name="logout-button" value="Log Out" />
+  <input type="submit" name="logout-button" value="Log Out" />
 </form>
 {% endblock %}

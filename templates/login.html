@@ -7,10 +7,10 @@
 {% endfor %}
 <form action="/auth" method="POST">
     <label for="username">Username</label>
-    <input type="text" name="username">
+    <input type="text" name="username" required>
     <br>
     <label for="password">Password</label>
-    <input type="password" name="password">
+    <input type="password" name="password" required>
     <br>
     <input type="submit" name="login-button" value="Log In">
     <p>Don't have an account? <a href="/signup">Sign Up</a></p>
