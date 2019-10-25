@@ -21,20 +21,21 @@ def checkAuth():
 @app.route("/")
 def root():
     if checkAuth(): #if you've already logged in
-        return redirect(url_for("welcome"))
+        return redirect(url_for('home'))
     else: #if not, redirect to login page
-        return redirect(url_for("login"))
+        return redirect(url_for('login'))
 
 @app.route("/login") #login page
 def login():
-    if checkAuth(): #if you're already logged in
-        return redirect(url_for('welcome'))
-    return render_template('login.html')
+    if checkAuth():
+        return redirect(url_for('home'))
+    else:
+        return render_template('login.html')
 
 @app.route("/signup") #signup page
 def signup():
     if checkAuth():
-        return redirect('/welcome')
+        return redirect('/home')
     return render_template('signup.html')
 
 @app.route("/register", methods=["POST"])
@@ -66,7 +67,7 @@ def auth():
         session['userID'] = a[0]
         session['username'] = username
         flash("Welcome " + username + ". You have been logged in successfully.")
-        return redirect(url_for('welcome'))
+        return redirect(url_for('home'))
 
 @app.route("/logout")
 def logout():
@@ -74,19 +75,20 @@ def logout():
     session.pop('username')
     return redirect(url_for('root'))
 
-@app.route("/welcome")
-def welcome():
+@app.route("/home")
+def home():
     if checkAuth():
-        return render_template('welcome.html')
+        return render_template('home.html')
     else:
-        return render_template('login.html')
+        return redirect(url_for('login'))
 
 #page for creating a new story
 @app.route("/createstory")
 def createStory():
     if checkAuth():
-        return render_template("createstory.html")
-    else: return render_template('login.html')
+        return render_template('createstory.html')
+    else:
+        return redirect(url_for('login'))
 
 #route for creating a new story
 @app.route("/newstory", methods=['POST'])
@@ -95,7 +97,7 @@ def newStory():
     content = request.form['content']
     userID = session['userid']
     storyID = dbcreatefunctions.createStory(c, title, content, userID)
-    return redirect("/story/{}".format(storyID))
+    return redirect('/story/{}'.format(storyID))
 
 if __name__ == "__main__":
     app.debug = True
