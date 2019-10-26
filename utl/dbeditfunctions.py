@@ -7,7 +7,7 @@ def getStoryEdits(c, storyID):
 #returns story's latest update. - a tuple
 def getLatestStoryEdit(c, storyID):
     edits = getStoryEdits(c, storyID)
-    return edits[-1]
+    return edits[0]
 
 #EDIT STORIES
 def addToStory(c, storyID, userID, username, content):
