@@ -29,9 +29,13 @@ def getStoriesNotEdited(c, userID):
 def htmlStoriesNotEdited(c,userID):
     stories = "<center>"
     can_edit = getStoriesNotEdited(c,userID)
-    #for k,v in can_edit:
-    #    stories += <
+    for k,v in can_edit:
+        stories += "<a href = /edit/"+k+">"
+    return stories
 
+def hasEdited(c,userID,storyID):
+    c.execute("SELECT 1 FROM story_edits WHERE userID = "+str(userID)+" AND storyID = "+str(storyID))
+    return len(c.fetchall()) != 0
 # DEBUG:
 def debugAdd(c):
     dbfunctions.dropTables(c)
@@ -43,3 +47,4 @@ def debugAdd(c):
     dbfunctions.debugPrintSelect(c,"stories")
     print(str(getStoriesEdited(c,5)))
     print(str(getStoriesNotEdited(c,5)))
+    print(hasEdited(c,5,2))
