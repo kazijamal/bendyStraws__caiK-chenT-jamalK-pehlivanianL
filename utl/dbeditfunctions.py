@@ -1,18 +1,36 @@
 from utl import dbcreatefunctions,dbfunctions
 
+def getStoryEdits(c, storyID):
+    c.execute("SELECT * FROM story_edits WHERE storyID = ? ORDER BY datetime(timestamp) DESC", (storyID, ))
+    return c.fetchall()
+
+#returns story's latest update. - a tuple
+def getLatestStoryEdit(c, storyID):
+    edits = getStoryEdits(c, storyID)
+    return getStoryEdits[-1]
+
 #EDIT STORIES
 def addToStory(c, storyID, userID, username, content):
     c.execute("INSERT INTO story_edits VALUES (?, ?, ?, ?, datetime('now'))", (storyID, userID, username, content))
 
-
-def getContributedStories(c, userID):
+#returns all the stories this user has edited (can Read)
+#returns an array of all the storyIDs
+def getStoriesEdited(c, userID):
     c.execute("SELECT storyID FROM story_edits WHERE userID = "+str(userID))
     return c.fetchall()
 
-
-def getNotContributedStories(c, userID):
-    #c.execute("SELECT stories.storyID, userID \n FROM stories \nLEFT JOIN story_edits WHERE userID = "+str(userID)+" USING(storyID) \nWHERE userID IS NULL")
+#returns all the stories this user has not edited (cannot Read)
+#returns an array of all the storyIDs
+def getStoriesNotEdited(c, userID):
+    edited = getStoriesEdited(c,userID)
+    c.execute("SELECT * FROM stories where storyID NOT IN (SELECT storyID FROM story_edits WHERE userID = "+str(userID)+")")
     return c.fetchall()
+
+def htmlStoriesNotEdited(c,userID):
+    stories = "<center>"
+    can_edit = getStoriesNotEdited(c,userID)
+    #for k,v in can_edit:
+    #    stories += <
 
 # DEBUG:
 def debugAdd(c):
@@ -23,5 +41,5 @@ def debugAdd(c):
     addToStory(c,1,5,"TheLastStraw"," world")
     dbfunctions.debugPrintSelect(c,"story_edits")
     dbfunctions.debugPrintSelect(c,"stories")
-    print(str(getContributedStories(c,5)))
-    print(str(getNotContributedStories(c,5)))
+    print(str(getStoriesEdited(c,5)))
+    print(str(getStoriesNotEdited(c,5)))

@@ -57,6 +57,7 @@ def register():
 
     else:
         c.execute("INSERT INTO users VALUES (NULL, ?, ?)", (username, password))
+        db.commit()
         flash("Successfuly created user")
         return redirect(url_for('login'))
 
@@ -87,8 +88,8 @@ def logout():
 @app.route("/home")
 def home():
     if checkAuth():
-        edited = dbfunctions.getStoriesEdited(c,session['userID'])
-        print(edited)
+        edited = dbeditfunctions.getContributedStories(c,session['userID'])
+        # print(edited)
         return render_template('home.html', storiesEdited=edited)
     else:
         return redirect(url_for('login'))
@@ -113,6 +114,7 @@ def readStory(storyID):
         else:
             title = dbfunctions.selectStory(c, storyID)[0]
             edits = dbfunctions.getStoryEdits(c, storyID)
+            # print(edits)
             return render_template('story.html', title=title, edits=edits)
     else:
         return redirect(url_for('login'))
@@ -136,13 +138,14 @@ def newStory():
         storyID = 1
     else:
         storyID = dbfunctions.getMaxStoryID(c) + 1
-    dbcreatefunctions.createStory(c, storyID, title, userID, username, content)
+        createfunctions.createStory(c, storyID, title, userID, username, content)
+    db.commit()
     return redirect('/story/{}'.format(storyID))
 
 if __name__ == "__main__":
     app.debug = True
     app.run()
 
-# dbeditfunctions.debugAdd(c);
+dbeditfunctions.debugAdd(c);
 db.commit()
 db.close()
