@@ -104,7 +104,7 @@ def readStory(storyID):
         else:
             title = dbfunctions.selectStory(c, storyID)[0]
             edits = dbfunctions.getStoryEdits(c, storyID)
-            print(edits)
+            # print(edits)
             return render_template('story.html', title=title, edits=edits)
     else:
         return redirect(url_for('login'))
