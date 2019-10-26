@@ -93,6 +93,16 @@ def home():
     else:
         return redirect(url_for('login'))
 
+@app.route("/search")
+def search():
+    if checkAuth():
+        query = request.args['query']
+        stories = dbfunctions.getSearch(c, query)
+        print(stories)
+        return render_template('search.html', query=query, stories=stories)
+    else:
+        return redirect(url_for('login'))
+
 @app.route("/story/<storyID>")
 def readStory(storyID):
     if checkAuth():
@@ -101,7 +111,7 @@ def readStory(storyID):
             flash("Invalid story ID")
             return redirect(url_for('home'))
         else:
-            title = dbfunctions.selectStory(c, storyID)[0][0]
+            title = dbfunctions.selectStory(c, storyID)[0]
             edits = dbfunctions.getStoryEdits(c, storyID)
             return render_template('story.html', title=title, edits=edits)
     else:

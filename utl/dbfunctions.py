@@ -30,6 +30,10 @@ def returnStoryNames(c):
 #         namesA.append(namesT[i][0])
 #     return namesA
 
+def getSearch(c, query):
+    c.execute("SELECT * FROM stories WHERE name LIKE '%" + query + "%'")
+    return c.fetchall()
+
 def getStoryEdits(c, storyID):
     c.execute("SELECT * FROM story_edits WHERE storyID = ? ORDER BY datetime(timestamp) DESC", (storyID, ))
     return c.fetchall()

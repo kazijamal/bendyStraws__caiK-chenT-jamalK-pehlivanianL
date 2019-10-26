@@ -97,3 +97,6 @@ Added requirement for password to be at least 8 characters on signup.
 jamalK -- 2019-10-26 14:53
 Added navigation bar with link back to home page.
 Added search bar to home page.
+
+jamalK -- 2019-10-26 15:19
+Implemented working search feature.
