@@ -43,9 +43,18 @@ def register():
     username = request.form['username']
     password = request.form['password']
     password2 = request.form['password2']
-    if password != password2:
+    c.execute("SELECT username FROM users WHERE username = ?", (username, ))
+    a = c.fetchone()
+    if a != None:
+        flash("Account with that username already exists")
+        return redirect(url_for('signup'))
+    elif password != password2:
         flash("Passwords do not match")
         return redirect(url_for('signup'))
+    elif len(password) < 8:
+        flash("Password must be at least 8 characters in length")
+        return redirect(url_for('signup'))
+    
     else:
         c.execute("INSERT INTO users VALUES (NULL, ?, ?)", (username, password))
         flash("Successfuly created user")

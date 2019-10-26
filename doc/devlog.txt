@@ -89,3 +89,7 @@ caiK -- 2019-10-25 22:03
 Fixed methods for create/edit story to use usernames
 Add drop tables method for quick debugging
 Changed ordering of parameters so it is the same as the ordering of the actual tables they edit
+
+jamalK -- 2019-10-25 22:40
+Added checking if user with provided username already exists on signup.
+Added requirement for password to be at least 8 characters on signup.
