@@ -120,7 +120,6 @@ def readStory(storyID):
             return render_template('story.html', title=title, edits=edits)
     else:
         return redirect(url_for('login'))
-<<<<<<< HEAD
 
 @app.route("/uneditedstories")
     if checkAuth():
@@ -129,9 +128,6 @@ def readStory(storyID):
     else:
         return redirect(url_for('login'))
 
-=======
-    
->>>>>>> 02cc6a73672486c10131dc7aaa3d15dfef332b08
 @app.route("/edit/<storyID>")
 def editStory(storyID):
     if checkAuth():
