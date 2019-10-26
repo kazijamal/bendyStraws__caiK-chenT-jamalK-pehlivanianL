@@ -46,4 +46,4 @@ def debugAdd(c):
     dbfunctions.debugPrintSelect(c,"stories")
     print(str(getStoriesEdited(c,5)))
     print(str(getStoriesNotEdited(c,5)))
-    print(hasEdited(c,5,2))
+    print(hasEdited(c,5,1))
