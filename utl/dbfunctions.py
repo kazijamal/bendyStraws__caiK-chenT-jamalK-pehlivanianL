@@ -9,6 +9,10 @@ def dropTables(c):
     c.execute("DROP TABLE IF EXISTS stories")
     c.execute("DROP TABLE IF EXISTS story_edits")
     c.execute("DROP TABLE IF EXISTS users")
+    
+def getSearch(c, query):
+    c.execute("SELECT * FROM stories WHERE name LIKE '%" + query + "%'")
+    return c.fetchall()
 
 #returns an array with all values from a given story's row in table.
 #find this story by its id

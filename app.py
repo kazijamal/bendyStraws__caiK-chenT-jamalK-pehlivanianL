@@ -139,7 +139,7 @@ def newStory():
         storyID = 1
     else:
         storyID = dbfunctions.getMaxStoryID(c) + 1
-        dbcreatefunctions.createStory(c, storyID, title, userID, username, content)
+    dbcreatefunctions.createStory(c, storyID, title, userID, username, content)
     db.commit()
     return redirect('/story/{}'.format(storyID))
 
@@ -147,6 +147,6 @@ if __name__ == "__main__":
     app.debug = True
     app.run()
 
-dbeditfunctions.debugAdd(c);
+# dbeditfunctions.debugAdd(c);
 db.commit()
 db.close()
