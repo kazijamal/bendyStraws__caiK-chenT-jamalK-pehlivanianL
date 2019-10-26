@@ -7,7 +7,7 @@ def getStoryEdits(c, storyID):
 #returns story's latest update. - a tuple
 def getLatestStoryEdit(c, storyID):
     edits = getStoryEdits(c, storyID)
-    return getStoryEdits[-1]
+    return edits[-1]
 
 #EDIT STORIES
 def addToStory(c, storyID, userID, username, content):
@@ -16,14 +16,13 @@ def addToStory(c, storyID, userID, username, content):
 #returns all the stories this user has edited (can Read)
 #returns an array of all the storyIDs
 def getStoriesEdited(c, userID):
-    c.execute("SELECT storyID FROM story_edits WHERE userID = "+str(userID))
+    c.execute("SELECT * FROM stories where storyID IN (SELECT storyID FROM story_edits WHERE userID = ?)", (userID, ))
     return c.fetchall()
 
 #returns all the stories this user has not edited (cannot Read)
 #returns an array of all the storyIDs
 def getStoriesNotEdited(c, userID):
-    edited = getStoriesEdited(c,userID)
-    c.execute("SELECT * FROM stories where storyID NOT IN (SELECT storyID FROM story_edits WHERE userID = "+str(userID)+")")
+    c.execute("SELECT * FROM stories where storyID NOT IN (SELECT storyID FROM story_edits WHERE userID = ?)", (userID, ))
     return c.fetchall()
 
 def htmlStoriesNotEdited(c,userID):
@@ -34,7 +33,7 @@ def htmlStoriesNotEdited(c,userID):
     return stories
 
 def hasEdited(c,userID,storyID):
-    c.execute("SELECT 1 FROM story_edits WHERE userID = "+str(userID)+" AND storyID = "+str(storyID))
+    c.execute("SELECT 1 FROM story_edits WHERE userID = ? AND storyID = ?", (userID, storyID))
     return len(c.fetchall()) != 0
 # DEBUG:
 def debugAdd(c):

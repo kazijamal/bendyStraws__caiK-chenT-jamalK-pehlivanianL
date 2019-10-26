@@ -88,10 +88,11 @@ def logout():
 @app.route("/home")
 def home():
     if checkAuth():
-        edited = dbeditfunctions.getStoriesEdited(c,session['userID'])
-        notEdited = dbeditfunctions.getStoriesNotEdited(c,session['userID'])
-        # print(edited)
-        return render_template('home.html', storiesEdited=edited, storiesNotEdited=notEdited)
+        storiesEdited = dbeditfunctions.getStoriesEdited(c,session['userID'])
+        storiesNotEdited = dbeditfunctions.getStoriesNotEdited(c,session['userID'])
+        print(storiesEdited)
+        print(storiesNotEdited)
+        return render_template('home.html', storiesEdited=storiesEdited, storiesNotEdited=storiesNotEdited)
     else:
         return redirect(url_for('login'))
 
@@ -119,6 +120,7 @@ def readStory(storyID):
             return render_template('story.html', title=title, edits=edits)
     else:
         return redirect(url_for('login'))
+<<<<<<< HEAD
 
 @app.route("/uneditedstories")
     if checkAuth():
@@ -127,6 +129,9 @@ def readStory(storyID):
     else:
         return redirect(url_for('login'))
 
+=======
+    
+>>>>>>> 02cc6a73672486c10131dc7aaa3d15dfef332b08
 @app.route("/edit/<storyID>")
 def editStory(storyID):
     if checkAuth():
@@ -139,7 +144,7 @@ def editStory(storyID):
                 flash("Already edited story")
                 return redirect(url_for('home'))
             title = dbfunctions.selectStory(c, storyID)[0]
-            edit = dbeditfunctions.getLatestStoryEdit()
+            edit = dbeditfunctions.getLatestStoryEdit(c, storyID)
             return render_template('edit.html', title=title, edit=edit)
     else:
         return redirect(url_for('login'))
