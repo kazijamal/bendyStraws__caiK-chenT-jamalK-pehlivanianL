@@ -85,7 +85,13 @@ def home():
 @app.route("/story/<storyID>")
 def readStory(storyID):
     if checkAuth():
-        return render_template('story.html')
+        if dbfunctions.getMaxStoryID(c) == None or int(storyID) < 1 or int(storyID) > dbfunctions.getMaxStoryID(c):
+            flash("Invalid story ID")
+            return redirect(url_for('home'))
+        else:
+            title = dbfunctions.selectStory(c, storyID)[0][0]
+            edits = dbfunctions.getStoryEdits(c, storyID)
+            return render_template('story.html', title=title, edits=edits)
     else:
         return redirect(url_for('login'))
 
@@ -102,14 +108,19 @@ def createStory():
 def newStory():
     title = request.form['title']
     content = request.form['content']
-    userID = session['userID']
-    storyID = dbcreatefunctions.createStory(c, title, content, userID)
+    userID = int(session['userID'])
+    username = session['username']
+    if dbfunctions.getMaxStoryID(c) == None:
+        storyID = 1
+    else:
+        storyID = dbfunctions.getMaxStoryID(c) + 1
+    dbcreatefunctions.createStory(c, storyID, title, content, userID, username)
     return redirect('/story/{}'.format(storyID))
 
 if __name__ == "__main__":
     app.debug = True
     app.run()
     
-dbeditfunctions.debugAdd(c);
+# dbeditfunctions.debugAdd(c);
 db.commit()
 db.close()
