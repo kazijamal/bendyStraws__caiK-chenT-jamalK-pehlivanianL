@@ -21,7 +21,7 @@
 {% else %}
 {% for story in storiesEdited %}
 <li>
-  <ul><a href="story/"+<var>{{story[0]}}</var>>{{story[1]}}</a></ul>
+  <ul><a href="story/{{story[0]}}">{{story[1]}}</a></ul>
 </li>
 {% endfor %}
 {% endif %}
@@ -34,7 +34,7 @@
 {% else %}
 {% for story in storiesNotEdited %}
 <li>
-  <ul><a href="story/"+<var>{{story[0]}}</var>>{{story[1]}}</a></ul>
+  <ul><a href="story/{{story[0]}}">{{story[1]}}</a></ul>
 </li>
 {% endfor %}
 {% endif %}
