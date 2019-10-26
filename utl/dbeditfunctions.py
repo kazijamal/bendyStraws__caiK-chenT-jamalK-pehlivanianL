@@ -14,13 +14,11 @@ def addToStory(c, storyID, userID, username, content):
     c.execute("INSERT INTO story_edits VALUES (?, ?, ?, ?, datetime('now'))", (storyID, userID, username, content))
 
 #returns all the stories this user has edited (can Read)
-#returns an array of all the storyIDs
 def getStoriesEdited(c, userID):
     c.execute("SELECT * FROM stories where storyID IN (SELECT storyID FROM story_edits WHERE userID = ?)", (userID, ))
     return c.fetchall()
 
 #returns all the stories this user has not edited (cannot Read)
-#returns an array of all the storyIDs
 def getStoriesNotEdited(c, userID):
     c.execute("SELECT * FROM stories where storyID NOT IN (SELECT storyID FROM story_edits WHERE userID = ?)", (userID, ))
     return c.fetchall()

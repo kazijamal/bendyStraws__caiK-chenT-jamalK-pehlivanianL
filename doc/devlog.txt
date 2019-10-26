@@ -100,3 +100,6 @@ Added search bar to home page.
 
 jamalK -- 2019-10-26 15:19
 Implemented working search feature.
+
+jamalK -- 2019-10-26 15:44
+Updated search feature to redirect to either edit or read story depending on whether or not user has contributed to the story yet.

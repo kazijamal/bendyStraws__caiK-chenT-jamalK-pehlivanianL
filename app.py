@@ -100,7 +100,17 @@ def home():
 def search():
     if checkAuth():
         query = request.args['query']
-        stories = dbfunctions.getSearch(c, query)
+        response = dbfunctions.getSearch(c, query)
+        storiesEdited = dbeditfunctions.getStoriesEdited(c,session['userID'])
+        ids = []
+        for story in storiesEdited:
+            ids.append(story[0])
+        stories = []
+        for story in response:
+            if story[0] in ids:
+                stories.append(story + ("edited",))
+            else:
+                stories.append(story + ("unedited",))
         print(stories)
         return render_template('search.html', query=query, stories=stories)
     else:
@@ -114,10 +124,14 @@ def readStory(storyID):
             flash("Invalid story ID")
             return redirect(url_for('home'))
         else:
-            title = dbfunctions.selectStory(c, storyID)[0]
-            edits = dbeditfunctions.getStoryEdits(c, storyID)
-            # print(edits)
-            return render_template('story.html', title=title, edits=edits)
+            if(not dbeditfunctions.hasEdited(c,session['userID'],storyID)):
+                flash("You have not edited this story yet")
+                return redirect(url_for('home'))
+            else:
+                title = dbfunctions.selectStory(c, storyID)[0]
+                edits = dbeditfunctions.getStoryEdits(c, storyID)
+                # print(edits)
+                return render_template('story.html', title=title, edits=edits)
     else:
         return redirect(url_for('login'))
 
