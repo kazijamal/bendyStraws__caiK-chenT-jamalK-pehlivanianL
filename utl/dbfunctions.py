@@ -34,10 +34,24 @@ def getStoryEdits(c, storyID):
     c.execute("SELECT * FROM story_edits WHERE storyID = ? ORDER BY datetime(timestamp) DESC", (storyID, ))
     return c.fetchall()
 
+def getAllEdits(c):
+    c.execute("SELECT * FROM story_edits")
+    return c.fetchall()
+
 #returns story's latest update. - a tuple
 def getLatestStoryEdit(c, storyID):
     edits = getStoryEdits(c, storyID)
     return getStoryEdits[-1]
+
+#returns all the stories this user has edited (can Read)
+#returns an array of all the storyIDs
+def getStoriesEdited(c, userID):
+    out = []
+    edits = getAllEdits(c)
+    for edit in edits:
+        if edit[1] == userID:
+            out.append(edit[0])
+    return out
 
 #returns an array with entire table as data.
 def getTable(c, table):
