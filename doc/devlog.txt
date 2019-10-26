@@ -103,6 +103,7 @@ Implemented working search feature.
 
 caiK -- 2019-10-26 15:32
 Moved getLastEdit function from dbfunctions.py to dbeditfuncitons.py and added getstoriesedited/not edited function
+
 jamalK -- 2019-10-26 15:44
 Updated search feature to redirect to either edit or read story depending on whether or not user has contributed to the story yet.
 
