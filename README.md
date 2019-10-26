@@ -11,18 +11,18 @@
 - pip comes installed with Python by default.
 
 #### Install Flask by running: 
-```console
+```bash
 $ pip3 install flask
 ```
 
 #### To clone the project: 
-```console
-$  git clone git@github.com:kazijamal/bendyStraws__caiK-chenT-jamalK-pehlivanianL.git
+```bash
+$ git clone git@github.com:kazijamal/bendyStraws__caiK-chenT-jamalK-pehlivanianL.git
 ```
 
 
 #### To run the project: 
-```console
+```bash
 $ cd <name of cloned directory>
 /<name of cloned directory>$ python3 app.py 
 ```
