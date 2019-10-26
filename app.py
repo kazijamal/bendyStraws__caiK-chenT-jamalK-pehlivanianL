@@ -57,6 +57,7 @@ def register():
 
     else:
         c.execute("INSERT INTO users VALUES (NULL, ?, ?)", (username, password))
+        db.commit()
         flash("Successfuly created user")
         return redirect(url_for('login'))
 
@@ -87,9 +88,10 @@ def logout():
 @app.route("/home")
 def home():
     if checkAuth():
-        edited = dbfunctions.getStoriesEdited(c,session['userID'])
-        print(edited)
-        return render_template('home.html', storiesEdited=edited)
+        edited = dbeditfunctions.getStoriesEdited(c,session['userID'])
+        notEdited = dbeditfunctions.getStoriesNotEdited(c,session['userID'])
+        # print(edited)
+        return render_template('home.html', storiesEdited=edited, storiesNotEdited=notEdited)
     else:
         return redirect(url_for('login'))
 
@@ -112,7 +114,8 @@ def readStory(storyID):
             return redirect(url_for('home'))
         else:
             title = dbfunctions.selectStory(c, storyID)[0]
-            edits = dbfunctions.getStoryEdits(c, storyID)
+            edits = dbeditfunctions.getStoryEdits(c, storyID)
+            # print(edits)
             return render_template('story.html', title=title, edits=edits)
     else:
         return redirect(url_for('login'))
@@ -152,12 +155,13 @@ def newStory():
     else:
         storyID = dbfunctions.getMaxStoryID(c) + 1
     dbcreatefunctions.createStory(c, storyID, title, userID, username, content)
+    db.commit()
     return redirect('/story/{}'.format(storyID))
 
 if __name__ == "__main__":
     app.debug = True
     app.run()
 
-dbeditfunctions.debugAdd(c);
+# dbeditfunctions.debugAdd(c);
 db.commit()
 db.close()

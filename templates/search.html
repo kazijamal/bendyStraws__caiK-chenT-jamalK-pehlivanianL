@@ -9,8 +9,9 @@
 <h4>No results found for "{{ query }}"</h4>
 {% else %}
 {% for story in stories %}
-<a href="story/{{ story[0] }}">{{ story[1] }}</a>
-<br>
+<ul>
+  <li><a href="story/{{ story[0] }}">{{ story[1] }}</a></li>
+</ul>
 {% endfor %}
 {% endif %}
 {% endblock %}
