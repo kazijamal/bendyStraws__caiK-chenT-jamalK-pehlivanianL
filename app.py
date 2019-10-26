@@ -136,7 +136,7 @@ def newStory():
         storyID = 1
     else:
         storyID = dbfunctions.getMaxStoryID(c) + 1
-    dbcreatefunctions.createStory(c, storyID, title, content, userID, username)
+    dbcreatefunctions.createStory(c, storyID, title, userID, username, content)
     return redirect('/story/{}'.format(storyID))
 
 if __name__ == "__main__":
