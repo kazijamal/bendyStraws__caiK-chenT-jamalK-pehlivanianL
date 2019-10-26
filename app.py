@@ -142,10 +142,19 @@ def editStory(storyID):
                 return redirect(url_for('home'))
             title = dbfunctions.selectStory(c, storyID)[0]
             edit = dbeditfunctions.getLatestStoryEdit(c, storyID)
-            return render_template('edit.html', title=title, edit=edit)
+            return render_template('edit.html', title=title, edit=edit,storyID = storyID)
     else:
         return redirect(url_for('login'))
 
+@app.route("/auth_edit", methods=["POST"])
+def authEdit():
+    content = request.form['content']
+    storyID = request.form['storyID']
+    userID = session['userID']
+    username = dbfunctions.getUsername(userID)
+    dbeditfunctions.addToStory(c, storyID, session['userID'], username, content):
+    flash("You have edited in successfully.")
+    return redirect(url_for('/story/'+storyID))
 #page for creating a new story
 @app.route("/createstory")
 def createStory():

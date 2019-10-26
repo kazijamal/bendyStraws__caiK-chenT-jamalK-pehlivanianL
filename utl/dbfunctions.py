@@ -9,7 +9,7 @@ def dropTables(c):
     c.execute("DROP TABLE IF EXISTS stories")
     c.execute("DROP TABLE IF EXISTS story_edits")
     c.execute("DROP TABLE IF EXISTS users")
-    
+
 def getSearch(c, query):
     c.execute("SELECT * FROM stories WHERE name LIKE '%" + query + "%'")
     return c.fetchall()
@@ -34,6 +34,10 @@ def getMaxStoryID(c):
     c.execute("SELECT MAX(storyID) FROM stories")
     return c.fetchone()[0]
 
+def getUsername(c,userID):
+    c.execute("SELECT username FROM users WHERE userID = " + userID)
+    return c.fetchone()[1]
+    
 def debugPrintSelect(c, table):
     c.execute("SELECT * FROM " + table)
     print(str(c.fetchall()) + "\n")
