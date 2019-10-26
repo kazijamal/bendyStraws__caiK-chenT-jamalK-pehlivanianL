@@ -5,12 +5,33 @@
 {% for message in get_flashed_messages() %}
 <i>{{ message }}</i><br>
 {% endfor %}
+
 <h2> Read Stories: </h2>
+{% if storiesEdited|length == 0 %}
+  You have not edited any stories yet.
+  <br>
+  <br>
+{% else %}
 {% for story in storiesEdited %}
 <li>
   <ul><a href="story/"+<var>{{story[0]}}</var>>{{story[1]}}</a></ul>
 </li>
 {% endfor %}
+{% endif %}
+
+<h2> Edit Stories: </h2>
+{% if storiesNotEdited|length == 0 %}
+  There are no stories created yet.
+  <br>
+  <br>
+{% else %}
+{% for story in storiesNotEdited %}
+<li>
+  <ul><a href="story/"+<var>{{story[0]}}</var>>{{story[1]}}</a></ul>
+</li>
+{% endfor %}
+{% endif %}
+
 <form action="/createstory">
   <input type="submit" name="create-story-button" value="Create a New Story"/>
 </form>
