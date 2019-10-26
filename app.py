@@ -111,7 +111,6 @@ def search():
                 stories.append(story + ("edited",))
             else:
                 stories.append(story + ("unedited",))
-        stories = dbfunctions.getSearch(c, query)
         print(stories)
         return render_template('search.html', query=query, stories=stories)
     else:
@@ -126,7 +125,7 @@ def readStory(storyID):
             return redirect(url_for('home'))
         else:
             if(not dbeditfunctions.hasEdited(c,session['userID'],storyID)):
-                flash("You have not edited this story yet ")
+                flash("You have not edited this story yet")
                 return redirect(url_for('home'))
             else: 
                 title = dbfunctions.selectStory(c, storyID)[0]
