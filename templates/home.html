@@ -14,8 +14,8 @@
 
 <h2> Read Stories: </h2>
 {% if storiesEdited|length == 0 %}
-  You have not edited any stories yet.
-  <br>
+You have not edited any stories yet.
+<br><br>
 {% else %}
 {% for story in storiesEdited %}
 <ul>
@@ -24,20 +24,12 @@
 {% endfor %}
 {% endif %}
 
-<h2> Edit Stories: </h2>
-{% if storiesNotEdited|length == 0 %}
-  There are no stories you have not edited.
-  <br><br>
-{% else %}
-{% for story in storiesNotEdited %}
-<ul>
-  <li><a href="edit/{{story[0]}}">{{story[1]}}</a></li>
-</ul>
-{% endfor %}
-{% endif %}
-
 <form action="/createstory">
   <input type="submit" name="create-story-button" value="Create a New Story"/>
+</form>
+<br>
+<form action="/uneditedstories">
+  <input type="submit" name="uneditedstories-button" value="Add to an Existing Story"/>
 </form>
 <br>
 <form action="/logout">

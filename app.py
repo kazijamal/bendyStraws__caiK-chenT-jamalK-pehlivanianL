@@ -100,8 +100,17 @@ def home():
 def search():
     if checkAuth():
         query = request.args['query']
-        stories = dbfunctions.getSearch(c, query)
-        print(stories)
+        response = dbfunctions.getSearch(c, query)
+        storiesEdited = dbeditfunctions.getStoriesEdited(c,session['userID'])
+        ids = []
+        for story in storiesEdited:
+            ids.append(story[0])
+        stories = []
+        for story in response:
+            if story[0] in ids:
+                stories.append(story + ("edited",))
+            else:
+                stories.append(story + ("unedited",))
         return render_template('search.html', query=query, stories=stories)
     else:
         return redirect(url_for('login'))
@@ -124,8 +133,8 @@ def readStory(storyID):
 @app.route("/uneditedstories")
 def uneditedStories():
     if checkAuth():
-        list = dbeditfunctions.htmlStoriesNotEdited(c,session['userID'])
-        return render_template('uneditedstories.html', list=list)
+        storiesNotEdited = dbeditfunctions.getStoriesNotEdited(c,session['userID'])
+        return render_template('uneditedstories.html', storiesNotEdited=storiesNotEdited)
     else:
         return redirect(url_for('login'))
 

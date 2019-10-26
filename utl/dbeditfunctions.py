@@ -33,8 +33,8 @@ def htmlStoriesNotEdited(c,userID):
     return stories
 
 def hasEdited(c,userID,storyID):
-    c.execute("SELECT 1 FROM story_edits WHERE userID = ? AND storyID = ?", (userID, storyID))
-    return len(c.fetchall()) != 0
+    c.execute("SELECT * FROM story_edits WHERE userID = ? AND storyID = ?", (userID, storyID))
+    return c.fetchone() != None
 # DEBUG:
 def debugAdd(c):
     dbfunctions.dropTables(c)
