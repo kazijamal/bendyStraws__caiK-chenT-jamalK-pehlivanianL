@@ -100,7 +100,6 @@ def home():
 def search():
     if checkAuth():
         query = request.args['query']
-<<<<<<< HEAD
         response = dbfunctions.getSearch(c, query)
         storiesEdited = dbeditfunctions.getStoriesEdited(c,session['userID'])
         ids = []
@@ -112,9 +111,7 @@ def search():
                 stories.append(story + ("edited",))
             else:
                 stories.append(story + ("unedited",))
-=======
         stories = dbfunctions.getSearch(c, query)
->>>>>>> e896b03f7842d37d514d13eae72a4108c66d2943
         print(stories)
         return render_template('search.html', query=query, stories=stories)
     else:
