@@ -93,3 +93,7 @@ Changed ordering of parameters so it is the same as the ordering of the actual t
 jamalK -- 2019-10-25 22:40
 Added checking if user with provided username already exists on signup.
 Added requirement for password to be at least 8 characters on signup.
+
+jamalK -- 2019-10-26 14:53
+Added navigation bar with link back to home page.
+Added search bar to home page.

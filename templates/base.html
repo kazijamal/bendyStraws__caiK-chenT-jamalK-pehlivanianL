@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        {% block header %}
-        <title>{% block title %} {% endblock %} | Odyssey</title>
-        {% endblock %}
-    </head>
+  <head>
+    {% block header %}
+    <title>{% block title %} {% endblock %} | Odyssey</title>
+    {% endblock %}
+  </head>
 
-    <body>
-        {% block body %} {% endblock %}
-    </body>
-    <footer>
-        {% block footer %}
-        <p>&copy; Copyright 2019 Team bendyStraws -- Kevin Cai, Tammy Chen, Kazi Jamal & Lauren Pehlivanian</p>
-        {% endblock %}
-    </footer>
+  <header>
+    <a href="/"><h1>Odyssey</h1></a>
+  </header>
+  
+  <body>
+    {% block body %} {% endblock %}
+  </body>
+  
+  <footer>
+    {% block footer %}
+    <p>&copy; Copyright 2019 Team bendyStraws -- Kevin Cai, Tammy Chen, Kazi Jamal & Lauren Pehlivanian</p>
+    {% endblock %}
+  </footer>
 
 </html>
