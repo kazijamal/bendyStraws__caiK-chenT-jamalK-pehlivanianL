@@ -82,6 +82,13 @@ def home():
     else:
         return redirect(url_for('login'))
 
+@app.route("/story/<storyID>")
+def readStory(storyID):
+    if checkAuth():
+        return render_template('story.html')
+    else:
+        return redirect(url_for('login'))
+
 #page for creating a new story
 @app.route("/createstory")
 def createStory():
@@ -95,7 +102,7 @@ def createStory():
 def newStory():
     title = request.form['title']
     content = request.form['content']
-    userID = session['userid']
+    userID = session['userID']
     storyID = dbcreatefunctions.createStory(c, title, content, userID)
     return redirect('/story/{}'.format(storyID))
 
