@@ -5,6 +5,12 @@
 {% for message in get_flashed_messages() %}
 <i>{{ message }}</i><br>
 {% endfor %}
+<h2> Read Stories: </h2>
+{% for story in storiesEdited %}
+<li>
+  <ul><a href="story/"+<var>{{story[0]}}</var>>{{story[1]}}</a></ul>
+</li>
+{% endfor %}
 <form action="/createstory">
   <input type="submit" name="create-story-button" value="Create a New Story"/>
 </form>
