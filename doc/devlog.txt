@@ -112,3 +112,6 @@ Added edit page and uneditedstories page, as well as the routing for those pages
 
 caiK -- 2019-10-26 19:44
 Fixed query for last edit to story, fixed stories showing in reverse order.
+
+caiK -- 2019-10-26 19:58
+Fixed sitemap and tables in the docs
