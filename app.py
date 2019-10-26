@@ -120,7 +120,22 @@ def readStory(storyID):
             return render_template('story.html', title=title, edits=edits)
     else:
         return redirect(url_for('login'))
-
+@app.route("/edit/<storyID>")
+def editStory(storyID):
+    if checkAuth():
+        # if no stories have been created or this story# is too high (not created)
+        if dbfunctions.getMaxStoryID(c) == None or int(storyID) < 1 or int(storyID) > dbfunctions.getMaxStoryID(c):
+            flash("Invalid story ID")
+            return redirect(url_for('home'))
+        else:
+            if(dbeditfunctions.hasEdited(c,session['userID'],storyID)):
+                flash("Already edited story")
+                return redirect(url_for('home'))
+            title = dbfunctions.selectStory(c, storyID)[0]
+            edit = dbeditfunctions.getLatestStoryEdit()
+            return render_template('edit.html', title=title, edit=edit)
+    else:
+        return redirect(url_for('login'))
 #page for creating a new story
 @app.route("/createstory")
 def createStory():
