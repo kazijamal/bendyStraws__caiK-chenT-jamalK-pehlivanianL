@@ -23,13 +23,6 @@ def getStoriesNotEdited(c, userID):
     c.execute("SELECT * FROM stories where storyID NOT IN (SELECT storyID FROM story_edits WHERE userID = ?)", (userID, ))
     return c.fetchall()
 
-def htmlStoriesNotEdited(c,userID):
-    stories = "<center>"
-    can_edit = getStoriesNotEdited(c,userID)
-    for k,v in can_edit:
-        stories += "<a href = /edit/"+k+">"
-    return stories
-
 def hasEdited(c,userID,storyID):
     c.execute("SELECT * FROM story_edits WHERE userID = ? AND storyID = ?", (userID, storyID))
     return c.fetchone() != None
