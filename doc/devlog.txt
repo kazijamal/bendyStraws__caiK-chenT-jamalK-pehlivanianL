@@ -104,5 +104,8 @@ Implemented working search feature.
 jamalK -- 2019-10-26 15:44
 Updated search feature to redirect to either edit or read story depending on whether or not user has contributed to the story yet.
 
+caiK -- 2019-10-26 16:12
+Added edit page and uneditedstories page, as well as the routing for those pages.
+
 caiK -- 2019-10-26 19:44
-Fixed query for last edit to story, fixed stories showing in reverse order
+Fixed query for last edit to story, fixed stories showing in reverse order.
