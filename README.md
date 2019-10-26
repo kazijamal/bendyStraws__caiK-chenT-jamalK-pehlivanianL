@@ -12,7 +12,7 @@
 
 #### Install Flask by running: 
 ```console
-$ pip install flask
+$ pip3 install flask
 ```
 
 #### To clone the project: 
@@ -23,7 +23,8 @@ $  git clone git@github.com:kazijamal/bendyStraws__caiK-chenT-jamalK-pehlivanian
 
 #### To run the project: 
 ```console
-$ python app.py 
+$ cd <name of cloned directory>
+/<name of cloned directory>$ python3 app.py 
 ```
 
 View the webpage by opening a web browser and visiting: http://127.0.0.1:5000/
