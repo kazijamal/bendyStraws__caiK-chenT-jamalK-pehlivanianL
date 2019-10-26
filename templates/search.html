@@ -10,9 +10,9 @@
 {% else %}
 <ul>
 {% for story in stories %}
-{% if story[3] == "edited" %}
+{% if story[2] == "edited" %}
 <li><a href="story/{{ story[0] }}">{{ story[1] }}</a></li>
-{% else %}
+{% elif story[2] == "unedited" %}
 <li><a href="edit/{{ story[0] }}">{{ story[1] }}</a></li>
 {% endif %}
 {% endfor %}

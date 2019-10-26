@@ -111,6 +111,7 @@ def search():
                 stories.append(story + ("edited",))
             else:
                 stories.append(story + ("unedited",))
+        print(stories)
         return render_template('search.html', query=query, stories=stories)
     else:
         return redirect(url_for('login'))
@@ -123,10 +124,14 @@ def readStory(storyID):
             flash("Invalid story ID")
             return redirect(url_for('home'))
         else:
-            title = dbfunctions.selectStory(c, storyID)[0]
-            edits = dbeditfunctions.getStoryEdits(c, storyID)
-            # print(edits)
-            return render_template('story.html', title=title, edits=edits)
+            if(not dbeditfunctions.hasEdited(c,session['userID'],storyID)):
+                flash("You have not edited this story yet ")
+                return redirect(url_for('home'))
+            else: 
+                title = dbfunctions.selectStory(c, storyID)[0]
+                edits = dbeditfunctions.getStoryEdits(c, storyID)
+                # print(edits)
+                return render_template('story.html', title=title, edits=edits)
     else:
         return redirect(url_for('login'))
 
@@ -149,9 +154,10 @@ def editStory(storyID):
             if(dbeditfunctions.hasEdited(c,session['userID'],storyID)):
                 flash("Already edited story")
                 return redirect(url_for('home'))
-            title = dbfunctions.selectStory(c, storyID)[0]
-            edit = dbeditfunctions.getLatestStoryEdit(c, storyID)
-            return render_template('edit.html', title=title, edit=edit)
+            else: 
+                title = dbfunctions.selectStory(c, storyID)[0]
+                edit = dbeditfunctions.getLatestStoryEdit(c, storyID)
+                return render_template('edit.html', title=title, edit=edit)
     else:
         return redirect(url_for('login'))
 
