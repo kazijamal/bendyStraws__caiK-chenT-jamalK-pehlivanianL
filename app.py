@@ -127,11 +127,9 @@ def readStory(storyID):
             if(not dbeditfunctions.hasEdited(c,session['userID'],storyID)):
                 flash("You have not edited this story yet")
                 return redirect(url_for('home'))
-            else:
-                title = dbfunctions.selectStory(c, storyID)[0]
-                edits = dbeditfunctions.getStoryEdits(c, storyID)
-                # print(edits)
-                return render_template('story.html', title=title, edits=edits)
+            title = dbfunctions.selectStory(c, storyID)[0]
+            edits = dbeditfunctions.getStoryEdits(c, storyID)
+            return render_template('story.html', title=title, edits=edits)
     else:
         return redirect(url_for('login'))
 
@@ -165,10 +163,11 @@ def authEdit():
     content = request.form['content']
     storyID = request.form['storyID']
     userID = session['userID']
-    username = dbfunctions.getUsername(userID)
-    dbeditfunctions.addToStory(c, storyID, session['userID'], username, content)
-    flash("You have edited in successfully.")
-    return redirect(url_for('/story/'+storyID))
+    username = session['username']
+    dbeditfunctions.addToStory(c, storyID, userID, username, content)
+    flash("You have edited the story successfully.")
+    return redirect('/story/'+storyID)
+
 #page for creating a new story
 @app.route("/createstory")
 def createStory():
