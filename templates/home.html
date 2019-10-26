@@ -11,12 +11,10 @@
   <input type="submit" name="search-button" value="Search">
 </form>
 <br>
-<br>
 
 <h2> Read Stories: </h2>
 {% if storiesEdited|length == 0 %}
   You have not edited any stories yet.
-  <br>
   <br>
 {% else %}
 {% for story in storiesEdited %}
@@ -30,11 +28,10 @@
 {% if storiesNotEdited|length == 0 %}
   There are no stories you have not edited.
   <br>
-  <br>
 {% else %}
 {% for story in storiesNotEdited %}
 <ul>
-  <li><a href="story/{{story[0]}}">{{story[1]}}</a></li>
+  <li><a href="edit/{{story[0]}}">{{story[1]}}</a></li>
 </ul>
 {% endfor %}
 {% endif %}

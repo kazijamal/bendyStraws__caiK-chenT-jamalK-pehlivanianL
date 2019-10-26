@@ -120,6 +120,7 @@ def readStory(storyID):
             return render_template('story.html', title=title, edits=edits)
     else:
         return redirect(url_for('login'))
+    
 @app.route("/edit/<storyID>")
 def editStory(storyID):
     if checkAuth():
@@ -132,7 +133,7 @@ def editStory(storyID):
                 flash("Already edited story")
                 return redirect(url_for('home'))
             title = dbfunctions.selectStory(c, storyID)[0]
-            edit = dbeditfunctions.getLatestStoryEdit()
+            edit = dbeditfunctions.getLatestStoryEdit(c, storyID)
             return render_template('edit.html', title=title, edit=edit)
     else:
         return redirect(url_for('login'))
