@@ -122,6 +122,7 @@ def readStory(storyID):
         return redirect(url_for('login'))
 
 @app.route("/uneditedstories")
+def uneditedStories():
     if checkAuth():
         list = dbeditfunctions.htmlStoriesNotEdited(c,session['userID'])
         return render_template('uneditedstories.html', list=list)
