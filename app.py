@@ -166,7 +166,7 @@ def authEdit():
     storyID = request.form['storyID']
     userID = session['userID']
     username = dbfunctions.getUsername(userID)
-    dbeditfunctions.addToStory(c, storyID, session['userID'], username, content):
+    dbeditfunctions.addToStory(c, storyID, session['userID'], username, content)
     flash("You have edited in successfully.")
     return redirect(url_for('/story/'+storyID))
 #page for creating a new story
