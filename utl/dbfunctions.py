@@ -4,31 +4,40 @@ def createTables(c):
     c.execute("CREATE TABLE IF NOT EXISTS story_edits (storyID INTEGER, userID INTEGER, username STRING, content TEXT, timestamp DATETIME)");
 
     c.execute("CREATE TABLE IF NOT EXISTS users (userID INTEGER PRIMARY KEY, username TEXT, password TEXT)");
-    
+
 def dropTables(c):
     c.execute("DROP TABLE IF EXISTS stories")
     c.execute("DROP TABLE IF EXISTS story_edits")
     c.execute("DROP TABLE IF EXISTS users")
-    
+
 #returns an array with all values from a given story's row in table.
 #find this story by its id
 def selectStory(c, storyID):
     c.execute("SELECT name FROM stories WHERE storyID = ?", (storyID, ))
     return c.fetchone()
 
-#returns an array with all story names
-#arguments: table = storyMasterlist table
+#returns a tuple with all story names
 def returnStoryNames(c):
     c.execute("SELECT name FROM stories")
     return c.fetchall()
+
+# #returns story names as an array  - UNNECESSARY
+# def returnStoryNamesArr(c):
+#     c.execute("SELECT name FROM stories")
+#     namesT = c.fetchall() #names tuple
+#     namesA = [] #names array
+#     for i in range(len(namesT)):
+#         namesA.append(namesT[i][0])
+#     return namesA
 
 def getStoryEdits(c, storyID):
     c.execute("SELECT * FROM story_edits WHERE storyID = ? ORDER BY datetime(timestamp) DESC", (storyID, ))
     return c.fetchall()
 
-#returns story's latest update.
+#returns story's latest update. - a tuple
 def getLatestStoryEdit(c, storyID):
-    return 0
+    edits = getStoryEdits(c, storyID)
+    return getStoryEdits[-1]
 
 #returns an array with entire table as data.
 def getTable(c, table):
@@ -43,8 +52,8 @@ def debugPrintSelect(c, table):
     c.execute("SELECT * FROM " + table)
     print(str(c.fetchall()) + "\n")
 
-    
-# TESTING   
+
+# TESTING
 
 # import sqlite3
 #
