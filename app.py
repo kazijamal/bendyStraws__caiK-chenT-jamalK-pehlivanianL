@@ -88,10 +88,11 @@ def logout():
 @app.route("/home")
 def home():
     if checkAuth():
-        edited = dbeditfunctions.getStoriesEdited(c,session['userID'])
-        notEdited = dbeditfunctions.getStoriesNotEdited(c,session['userID'])
-        # print(edited)
-        return render_template('home.html', storiesEdited=edited, storiesNotEdited=notEdited)
+        storiesEdited = dbeditfunctions.getStoriesEdited(c,session['userID'])
+        storiesNotEdited = dbeditfunctions.getStoriesNotEdited(c,session['userID'])
+        print(storiesEdited)
+        print(storiesNotEdited)
+        return render_template('home.html', storiesEdited=storiesEdited, storiesNotEdited=storiesNotEdited)
     else:
         return redirect(url_for('login'))
 
