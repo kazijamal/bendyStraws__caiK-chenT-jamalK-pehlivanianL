@@ -119,6 +119,14 @@ def readStory(storyID):
             return render_template('story.html', title=title, edits=edits)
     else:
         return redirect(url_for('login'))
+
+@app.route("/uneditedstories")
+    if checkAuth():
+        list = dbeditfunctions.htmlStoriesNotEdited(c,session['userID'])
+        return render_template('uneditedstories.html', list=list)
+    else:
+        return redirect(url_for('login'))
+
 @app.route("/edit/<storyID>")
 def editStory(storyID):
     if checkAuth():
@@ -135,6 +143,7 @@ def editStory(storyID):
             return render_template('edit.html', title=title, edit=edit)
     else:
         return redirect(url_for('login'))
+
 #page for creating a new story
 @app.route("/createstory")
 def createStory():
