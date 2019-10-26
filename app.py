@@ -35,7 +35,7 @@ def login():
 @app.route("/signup") #signup page
 def signup():
     if checkAuth():
-        return redirect('/home')
+        return redirect(url_for('home'))
     return render_template('signup.html')
 
 @app.route("/register", methods=["POST"])
@@ -54,7 +54,7 @@ def register():
     elif len(password) < 8:
         flash("Password must be at least 8 characters in length")
         return redirect(url_for('signup'))
-    
+
     else:
         c.execute("INSERT INTO users VALUES (NULL, ?, ?)", (username, password))
         flash("Successfuly created user")
@@ -87,13 +87,16 @@ def logout():
 @app.route("/home")
 def home():
     if checkAuth():
-        return render_template('home.html')
+        edited = dbfunctions.getStoriesEdited(c,session['userID'])
+        print(edited)
+        return render_template('home.html', storiesEdited=edited)
     else:
         return redirect(url_for('login'))
 
 @app.route("/story/<storyID>")
 def readStory(storyID):
     if checkAuth():
+        # if no stories have been created or this story# is too high (not created)
         if dbfunctions.getMaxStoryID(c) == None or int(storyID) < 1 or int(storyID) > dbfunctions.getMaxStoryID(c):
             flash("Invalid story ID")
             return redirect(url_for('home'))
