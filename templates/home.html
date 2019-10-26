@@ -27,7 +27,7 @@
 <h2> Edit Stories: </h2>
 {% if storiesNotEdited|length == 0 %}
   There are no stories you have not edited.
-  <br>
+  <br><br>
 {% else %}
 {% for story in storiesNotEdited %}
 <ul>
@@ -39,6 +39,7 @@
 <form action="/createstory">
   <input type="submit" name="create-story-button" value="Create a New Story"/>
 </form>
+<br>
 <form action="/logout">
   <input type="submit" name="logout-button" value="Log Out" />
 </form>
