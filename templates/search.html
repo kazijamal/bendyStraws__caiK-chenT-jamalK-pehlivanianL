@@ -18,4 +18,8 @@
 {% endfor %}
 </ul>
 {% endif %}
+<form action="/search">
+  <input type="text" name="query" required>
+  <input type="submit" name="search-button" value="Search">
+</form>
 {% endblock %}
