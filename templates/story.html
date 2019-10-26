@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Story{% endblock %}
 {% block body %}
-<h1>{{ title }}</h1>
+<h2>{{ title }}</h2>
 {% for edit in edits %}
 <p>{{ edit[1] }}</p>
 <h5>written by {{ edit[3] }} on {{ edit[4] }}</h5>

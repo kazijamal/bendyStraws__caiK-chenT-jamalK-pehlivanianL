@@ -94,6 +94,16 @@ def home():
     else:
         return redirect(url_for('login'))
 
+@app.route("/search")
+def search():
+    if checkAuth():
+        query = request.args['query']
+        stories = dbfunctions.getSearch(c, query)
+        print(stories)
+        return render_template('search.html', query=query, stories=stories)
+    else:
+        return redirect(url_for('login'))
+
 @app.route("/story/<storyID>")
 def readStory(storyID):
     if checkAuth():
@@ -128,7 +138,7 @@ def newStory():
         storyID = 1
     else:
         storyID = dbfunctions.getMaxStoryID(c) + 1
-    dbcreatefunctions.createStory(c, storyID, title, content, userID, username)
+        createfunctions.createStory(c, storyID, title, userID, username, content)
     db.commit()
     return redirect('/story/{}'.format(storyID))
 
@@ -136,6 +146,6 @@ if __name__ == "__main__":
     app.debug = True
     app.run()
 
-# dbeditfunctions.debugAdd(c);
+dbeditfunctions.debugAdd(c);
 db.commit()
 db.close()

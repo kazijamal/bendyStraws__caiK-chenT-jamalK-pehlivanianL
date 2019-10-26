@@ -1,10 +1,17 @@
 {% extends "base.html" %}
-{% block title %}Welcome{% endblock %}
+{% block title %}Home{% endblock %}
 {% block body %}
-<h1>Welcome</h1>
 {% for message in get_flashed_messages() %}
 <i>{{ message }}</i><br>
 {% endfor %}
+
+<h2>Search for a Story</h2>
+<form action="/search">
+  <input type="text" name="query" required>
+  <input type="submit" name="search-button" value="Search">
+</form>
+<br>
+<br>
 
 <h2> Read Stories: </h2>
 {% if storiesEdited|length == 0 %}
