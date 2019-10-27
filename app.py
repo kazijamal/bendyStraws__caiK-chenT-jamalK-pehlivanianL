@@ -89,10 +89,8 @@ def logout():
 def home():
     if checkAuth():
         storiesEdited = dbeditfunctions.getStoriesEdited(c,session['userID'])
-        storiesNotEdited = dbeditfunctions.getStoriesNotEdited(c,session['userID'])
         print(storiesEdited)
-        print(storiesNotEdited)
-        return render_template('home.html', storiesEdited=storiesEdited, storiesNotEdited=storiesNotEdited)
+        return render_template('home.html', storiesEdited=storiesEdited)
     else:
         return redirect(url_for('login'))
 
@@ -133,7 +131,7 @@ def readStory(storyID):
     else:
         return redirect(url_for('login'))
 
-@app.route("/uneditedstories")
+@app.route("/uneditedstories", methods=["POST","GET"])
 def uneditedStories():
     if checkAuth():
         list = dbeditfunctions.getStoriesNotEdited(c, session['userID'])
