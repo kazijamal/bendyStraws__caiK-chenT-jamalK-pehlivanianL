@@ -138,3 +138,7 @@ Fixed query for last edit to story, fixed stories showing in reverse order.
 
 caiK -- 2019-10-26 19:58
 Fixed sitemap and tables in the docs
+
+pehlivanianL -- 2019-10-26 21:55
+Ran more test, found bug that edit story page displays first edit rather than the most recent.
+Fixed this bug by ordering edits by date in ascending order, then getting edit at last (-1) index.
