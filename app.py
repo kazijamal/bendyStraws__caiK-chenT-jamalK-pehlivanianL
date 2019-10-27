@@ -149,6 +149,7 @@ def editStory(storyID):
             flash("Invalid story ID")
             return redirect(url_for('home'))
         else:
+            # if the user has already edited this story, redirect to home.
             if(dbeditfunctions.hasEdited(c,session['userID'],storyID)):
                 flash("Already edited story")
                 return redirect(url_for('home'))
@@ -164,6 +165,12 @@ def authEdit():
     storyID = request.form['storyID']
     userID = session['userID']
     username = session['username']
+    # if the user has already edited this story, redirect to home.
+    # This statement is required to prevent a loophole where a user can create a story
+    # on one tab(tab1), sign out, sign back in as another user(set sessions' userID to an ID that's not equal to the author's)
+    # this allows the author go to the edit page for the newly created story, and type in their new content.
+    # on another tab(tab2), the new user can sign out, and sign back in as the original author (set session's userID to original author's ID)
+    # and then on tab1 the person can press submit, which would set this edit as the original author.
     if(dbeditfunctions.hasEdited(c,session['userID'],storyID)):
         flash("Already edited story")
         return redirect(url_for('home'))
