@@ -4,14 +4,16 @@ from utl import dbfunctions, dbeditfunctions, dbcreatefunctions
 
 app = Flask(__name__)
 
+#creates secret key for sessions
 app.secret_key = os.urandom(32)
 
+#sets up database
 DB_FILE = "odyssey.db"
-
 db = sqlite3.connect(DB_FILE, check_same_thread=False) #open if file exists, otherwise create
 c = db.cursor() #facilitate db operations
 dbfunctions.createTables(c)
 
+#checks if user is authenticated
 def checkAuth():
     if "userID" in session:
         return True
@@ -38,8 +40,10 @@ def signup():
         return redirect(url_for('home'))
     return render_template('signup.html')
 
+#creates a new user in the database if provided valid signup information
 @app.route("/register", methods=["POST"])
 def register():
+    #gets user information from POST request
     username = request.form['username']
     password = request.form['password']
     password2 = request.form['password2']
@@ -61,6 +65,7 @@ def register():
         flash("Successfuly created user")
         return redirect(url_for('login'))
 
+#authenticates user upon a login attempt
 @app.route("/auth", methods=["POST"])
 def auth():
     # information inputted into the form by the user
@@ -81,6 +86,7 @@ def auth():
         flash("Welcome " + username + ". You have been logged in successfully.")
         return redirect(url_for('home'))
 
+#logs out user by deleting info from the session
 @app.route("/logout")
 def logout():
     session.pop('userID')
@@ -96,11 +102,14 @@ def home():
     else:
         return redirect(url_for('login'))
 
+#does a search through stories given a keyword from their namesy
 @app.route("/search")
 def search():
     if checkAuth():
+        #gets information from GET request
         query = request.args['query']
         response = dbfunctions.getSearch(c, query)
+        #checks if stories have been edited by current user
         storiesEdited = dbeditfunctions.getStoriesEdited(c,session['userID'])
         ids = []
         for story in storiesEdited:
@@ -112,14 +121,16 @@ def search():
             else:
                 stories.append(story + ("unedited",))
         print(stories)
+        #returns search results with either /story or /edit links depending on whether the current user has edited the story
         return render_template('search.html', query=query, stories=stories)
     else:
         return redirect(url_for('login'))
 
+#route for reading a story with a given storyID
 @app.route("/story/<storyID>")
 def readStory(storyID):
     if checkAuth():
-        # if no stories have been created or this story# is too high (not created)
+        # if no stories have been created or this story number is too high (not created)
         if dbfunctions.getMaxStoryID(c) == None or int(storyID) < 1 or int(storyID) > dbfunctions.getMaxStoryID(c):
             flash("Invalid story ID")
             return redirect(url_for('home'))
@@ -133,6 +144,7 @@ def readStory(storyID):
     else:
         return redirect(url_for('login'))
 
+#page displaying stories user has not edited yet
 @app.route("/uneditedstories", methods=["POST","GET"])
 def uneditedStories():
     if checkAuth():
@@ -141,6 +153,7 @@ def uneditedStories():
     else:
         return redirect(url_for('login'))
 
+#route for editing a story with a given storyID
 @app.route("/edit/<storyID>")
 def editStory(storyID):
     if checkAuth():
@@ -159,8 +172,10 @@ def editStory(storyID):
     else:
         return redirect(url_for('login'))
 
+#adds a contribution to the story if provided valid edit information
 @app.route("/auth_edit", methods=["POST"])
 def authEdit():
+    #gets edit information from POST request
     content = request.form['content']
     storyID = request.form['storyID']
     userID = session['userID']
@@ -174,9 +189,10 @@ def authEdit():
     if(dbeditfunctions.hasEdited(c,session['userID'],storyID)):
         flash("Already edited story")
         return redirect(url_for('home'))
+    #adds edit to story to the database
     dbeditfunctions.addToStory(c, storyID, userID, username, content)
     db.commit()
-    flash("You have edited the story successfully.")
+    flash("You have contributed to the story successfully.")
     return redirect('/story/'+storyID)
 
 #page for creating a new story
@@ -187,17 +203,20 @@ def createStory():
     else:
         return redirect(url_for('login'))
 
-#route for creating a new story
+#adds a new story to the database if provided valid new story information 
 @app.route("/newstory", methods=['POST'])
 def newStory():
+    #gets story information from POST request
     title = request.form['title']
     content = request.form['content']
     userID = int(session['userID'])
     username = session['username']
+    #determines what storyID to give the new story
     if dbfunctions.getMaxStoryID(c) == None:
         storyID = 1
     else:
         storyID = dbfunctions.getMaxStoryID(c) + 1
+    #adds new story to the database
     dbcreatefunctions.createStory(c, storyID, title, userID, username, content)
     db.commit()
     return redirect('/story/{}'.format(storyID))
@@ -206,7 +225,6 @@ if __name__ == "__main__":
     app.debug = True
     app.run()
 
-#dbeditfunctions.debugAdd(c);
 db.commit()
 db.close()
 
