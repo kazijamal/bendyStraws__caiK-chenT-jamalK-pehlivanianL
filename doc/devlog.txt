@@ -167,3 +167,5 @@ caiK -- 2019-10-27 4:20
   Moved searchbar on search results page to the top
   Fix for formatted text showing up un-formatted
   
+jamalK -- 2019-10-27 13:07
+Fixed indentation in all html files.
