@@ -1,4 +1,4 @@
-# Odyssey by Team bendyStraws
+# Odyssey by Team bendyStraws 
 ## Roster and Role:
 - Kevin Cai (Adding to Stories System Manager)
 - Tammy Chen (Project Manager, Authentication System Manager)
@@ -29,4 +29,5 @@ $ cd <name of cloned directory>
 
 View the webpage by opening a web browser and visiting: http://127.0.0.1:5000/
 
+---
 © Copyright 2019 Team bendyStraws -- Kevin Cai, Tammy Chen, Kazi Jamal & Lauren Pehlivanian
