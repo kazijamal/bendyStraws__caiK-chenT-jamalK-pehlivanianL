@@ -145,3 +145,6 @@ Fixed this bug by ordering edits by date in ascending order, then getting edit a
 
 pehlivanianL -- 2019-10-26 23:31
 Fixed part of sitemap, most recent version in docs.
+
+caiK -- 2019-10-26 23:55
+Added comments for dbeditfunctions.py, uneditedstories.html, edit.html, and formatted all python files to pep8
