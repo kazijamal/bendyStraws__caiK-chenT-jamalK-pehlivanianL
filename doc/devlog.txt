@@ -113,16 +113,28 @@ Added userID argument for home route function in order to pass into db functions
 jamalK -- 2019-10-26 15:19
 Implemented working search feature.
 
-pehlivanianL -- 2019-10-26 15:51
-Included boolean logic into home page template to display a statement if there are no stories to edit/read.
-Added commit statements for databases after writing to / creating stories, as well as creating users.
+caiK -- 2019-10-26 15:32
+Moved getLastEdit function from dbfunctions.py to dbeditfuncitons.py and added getstoriesedited/not edited function
 
 jamalK -- 2019-10-26 15:44
 Updated search feature to redirect to either edit or read story depending on whether or not user has contributed to the story yet.
 
+pehlivanianL -- 2019-10-26 15:51
+Included boolean logic into home page template to display a statement if there are no stories to edit/read.
+Added commit statements for databases after writing to / creating stories, as well as creating users.
+
 pehlivanianL -- 2019-10-26 16:00
 Added more data to databse (after figuring out why no data was being committed before).
+
+caiK -- 2019-10-26 16:12
+Added edit page and uneditedstories page, as well as the routing for those pages.
 
 pehlivanianL -- 2019-10-26 18:05
 Kept testing and adding more test data to databse.
 Figured out bug that user can create a story with no content. Edited testarea html tag to delete this whitespace.
+
+caiK -- 2019-10-26 19:44
+Fixed query for last edit to story, fixed stories showing in reverse order.
+
+caiK -- 2019-10-26 19:58
+Fixed sitemap and tables in the docs

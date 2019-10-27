@@ -4,14 +4,12 @@
 {% for message in get_flashed_messages() %}
 <i>{{ message }}</i><br>
 {% endfor %}
-
 <h2>Search for a Story</h2>
 <form action="/search">
-  <input type="text" name="query" required>
-  <input type="submit" name="search-button" value="Search">
+	<input type="text" name="query" required>
+	<input type="submit" name="search-button" value="Search">
 </form>
 <br>
-
 <h2> Read Stories: </h2>
 {% if storiesEdited|length == 0 %}
 You have not edited any stories yet.
@@ -19,20 +17,19 @@ You have not edited any stories yet.
 {% else %}
 {% for story in storiesEdited %}
 <ul>
-  <li><a href="story/{{story[0]}}">{{story[1]}}</a></li>
+	<li><a href="story/{{story[0]}}">{{story[1]}}</a></li>
 </ul>
 {% endfor %}
 {% endif %}
-
 <form action="/createstory">
-  <input type="submit" name="create-story-button" value="Create a New Story"/>
+	<input type="submit" name="create-story-button" value="Create a New Story"/>
 </form>
 <br>
 <form action="/uneditedstories">
-  <input type="submit" name="uneditedstories-button" value="Add to an Existing Story"/>
+	<input type="submit" name="uneditedstories-button" value="Add to an Existing Story"/>
 </form>
 <br>
 <form action="/logout">
-  <input type="submit" name="logout-button" value="Log Out" />
+	<input type="submit" name="logout-button" value="Log Out" />
 </form>
 {% endblock %}

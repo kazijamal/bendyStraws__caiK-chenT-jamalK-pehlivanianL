@@ -127,11 +127,9 @@ def readStory(storyID):
             if(not dbeditfunctions.hasEdited(c,session['userID'],storyID)):
                 flash("You have not edited this story yet")
                 return redirect(url_for('home'))
-            else:
-                title = dbfunctions.selectStory(c, storyID)[0]
-                edits = dbeditfunctions.getStoryEdits(c, storyID)
-                # print(edits)
-                return render_template('story.html', title=title, edits=edits)
+            title = dbfunctions.selectStory(c, storyID)[0]
+            edits = dbeditfunctions.getStoryEdits(c, storyID)
+            return render_template('story.html', title=title, edits=edits)
     else:
         return redirect(url_for('login'))
 
@@ -165,10 +163,12 @@ def authEdit():
     content = request.form['content']
     storyID = request.form['storyID']
     userID = session['userID']
-    username = dbfunctions.getUsername(userID)
-    dbeditfunctions.addToStory(c, storyID, session['userID'], username, content)
-    flash("You have edited in successfully.")
-    return redirect(url_for('/story/'+storyID))
+    username = session['username']
+    dbeditfunctions.addToStory(c, storyID, userID, username, content)
+    db.commit()
+    flash("You have edited the story successfully.")
+    return redirect('/story/'+storyID)
+
 #page for creating a new story
 @app.route("/createstory")
 def createStory():
@@ -199,3 +199,28 @@ if __name__ == "__main__":
 #dbeditfunctions.debugAdd(c);
 db.commit()
 db.close()
+
+#   ____      _                                                   
+#  / __ \    | |                                                  
+# | |  | | __| |_   _ ___ ___  ___ _   _                          
+# | |  | |/ _` | | | / __/ __|/ _ \ | | |                         
+# | |__| | (_| | |_| \__ \__ \  __/ |_| |                         
+#  \____/ \__,_|\__, |___/___/\___|\__, |                         
+#                __/ |              __/ |                         
+#               |___/              |___/                          
+#  _             _                                                
+# | |           | |                                               
+# | |__  _   _  | |_ ___  __ _ _ __ ___                           
+# | '_ \| | | | | __/ _ \/ _` | '_ ` _ \                          
+# | |_) | |_| | | ||  __/ (_| | | | | | |                         
+# |_.__/ \__, |  \__\___|\__,_|_| |_| |_|                         
+#         __/ |                                                   
+#        |___/                                                    
+#  _                    _        _____ _                          
+# | |                  | |      / ____| |                         
+# | |__   ___ _ __   __| |_   _| (___ | |_ _ __ __ ___      _____ 
+# | '_ \ / _ \ '_ \ / _` | | | |\___ \| __| '__/ _` \ \ /\ / / __|
+# | |_) |  __/ | | | (_| | |_| |____) | |_| | | (_| |\ V  V /\__ \
+# |_.__/ \___|_| |_|\__,_|\__, |_____/ \__|_|  \__,_| \_/\_/ |___/
+#                          __/ |                                  
+#                         |___/                                   

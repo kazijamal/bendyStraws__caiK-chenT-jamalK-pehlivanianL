@@ -9,13 +9,17 @@
 <h4>No results found for "{{ query }}"</h4>
 {% else %}
 <ul>
-{% for story in stories %}
-{% if story[2] == "edited" %}
-<li><a href="story/{{ story[0] }}">{{ story[1] }}</a></li>
-{% elif story[2] == "unedited" %}
-<li><a href="edit/{{ story[0] }}">{{ story[1] }}</a></li>
-{% endif %}
-{% endfor %}
+	{% for story in stories %}
+	{% if story[2] == "edited" %}
+	<li><a href="story/{{ story[0] }}">{{ story[1] }}</a></li>
+	{% elif story[2] == "unedited" %}
+	<li><a href="edit/{{ story[0] }}">{{ story[1] }}</a></li>
+	{% endif %}
+	{% endfor %}
 </ul>
 {% endif %}
+<form action="/search">
+	<input type="text" name="query" required>
+	<input type="submit" name="search-button" value="Search">
+</form>
 {% endblock %}
