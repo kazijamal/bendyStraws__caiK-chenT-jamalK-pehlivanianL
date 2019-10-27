@@ -2,7 +2,7 @@ from utl import dbcreatefunctions, dbfunctions
 
 
 def getStoryEdits(c, storyID):
-    c.execute('SELECT * FROM story_edits WHERE storyID = ? ORDER BY datetime(timestamp)'
+    c.execute('SELECT * FROM story_edits WHERE storyID = ? ORDER BY datetime(timestamp) ASC'
               , (storyID, ))
     return c.fetchall()
 
@@ -11,7 +11,7 @@ def getStoryEdits(c, storyID):
 
 def getLatestStoryEdit(c, storyID):
     edits = getStoryEdits(c, storyID)
-    return edits[0]
+    return edits[-1]
 
 
 # EDIT STORIES
