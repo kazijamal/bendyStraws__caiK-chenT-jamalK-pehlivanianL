@@ -48,7 +48,7 @@ Created createstory.html template and added routes for creating a new story to a
 
 pehlivanianL -- 2019-10-22 22:52
 Team bendyStraws discussed different approaches to storing story data. We had previously planned to have an individual table for each story containing its edits, but after a lengthy discussion decided to change this structure to have one master story_edits table.
-This table will contain all edits to all stories, with their unique timestamp so that we can later sort these entries to obtain the complete story, or retreive the latest edit.
+This table will contain all edits to all stories, with their unique timestamp so that we can later sort these entries to obtain the complete story, or retrieve the latest edit.
 We updated the database explanations and examples to reflect this change.
 
 pehlivanianL -- 2019-10-23 00:01
@@ -124,14 +124,14 @@ Included boolean logic into home page template to display a statement if there a
 Added commit statements for databases after writing to / creating stories, as well as creating users.
 
 pehlivanianL -- 2019-10-26 16:00
-Added more data to databse (after figuring out why no data was being committed before).
+Added more data to database (after figuring out why no data was being committed before).
 
 caiK -- 2019-10-26 16:12
 Added edit page and uneditedstories page, as well as the routing for those pages.
 
 pehlivanianL -- 2019-10-26 18:05
-Kept testing and adding more test data to databse.
-Figured out bug that user can create a story with no content. Edited testarea html tag to delete this whitespace.
+Kept testing and adding more test data to database.
+Figured out bug that user can create a story with no content. Edited textarea html tag to delete this whitespace.
 
 caiK -- 2019-10-26 19:44
 Fixed query for last edit to story, fixed stories showing in reverse order.
