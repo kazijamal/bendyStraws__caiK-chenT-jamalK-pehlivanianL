@@ -63,17 +63,19 @@ def register():
 
 @app.route("/auth", methods=["POST"])
 def auth():
+    # information inputted into the form by the user
     username = request.form['username']
     password = request.form['password']
+    # looking for username & password from database
     c.execute("SELECT userID, password FROM users WHERE username = ?", (username, ))
     a = c.fetchone()
-    if a == None:
+    if a == None: # if username not found
         flash("No user found with given username")
         return redirect(url_for('login'))
-    elif password != a[1]:
+    elif password != a[1]: # if password is incorrect
         flash("Incorrect password")
         return redirect(url_for('login'))
-    else:
+    else: # hooray! the username and password are both valid
         session['userID'] = a[0]
         session['username'] = username
         flash("Welcome " + username + ". You have been logged in successfully.")
@@ -83,11 +85,11 @@ def auth():
 def logout():
     session.pop('userID')
     session.pop('username')
-    return redirect(url_for('root'))
+    return redirect(url_for('root')) # should redirect back to login page
 
 @app.route("/home")
 def home():
-    if checkAuth():
+    if checkAuth(): # if logged in
         storiesEdited = dbeditfunctions.getStoriesEdited(c,session['userID'])
         print(storiesEdited)
         return render_template('home.html', storiesEdited=storiesEdited)
