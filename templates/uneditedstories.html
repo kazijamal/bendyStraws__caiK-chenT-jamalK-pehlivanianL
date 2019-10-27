@@ -4,12 +4,12 @@
 <h2>Edit an Existing Story</h2>
 <h3>Click on one of these stories to edit them:</h3>
 {% if storiesNotEdited|length == 0 %}
-  There are no stories you have not edited.
-  <br><br>
+There are no stories you have not edited.
+<br><br>
 {% else %}
 {% for story in storiesNotEdited %}
 <ul>
-  <li><a href="edit/{{story[0]}}">{{story[1]}}</a></li>
+	<li><a href="edit/{{story[0]}}">{{story[1]}}</a></li>
 </ul>
 {% endfor %}
 {% endif %}
