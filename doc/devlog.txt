@@ -148,3 +148,14 @@ Fixed part of sitemap, most recent version in docs.
 
 caiK -- 2019-10-26 23:55
 Added comments for dbeditfunctions.py, uneditedstories.html, edit.html, and formatted all python files to pep8
+
+
+caiK -- 2019-10-27 00:23
+  Fixed an important loophole:
+    # a loophole where a user can create a story
+    # on one tab(tab1), sign out, sign back in as another user(set sessions' userID to an ID that's not equal to the author's)
+    # this allows the author go to the edit page for the newly created story, and type in their new content.
+    # on another tab(tab2), the new user can sign out, 
+    # and sign back in as the original author (set session's userID to original author's ID)
+    # and then on tab1 the person can press submit, which would set this edit as the original author.
+   This was fixed by checking if the user edited the story again while submitting in the form.
