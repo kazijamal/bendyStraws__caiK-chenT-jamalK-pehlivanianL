@@ -1,6 +1,8 @@
 from utl import dbcreatefunctions, dbfunctions
 
 
+# returns all story edits, sorted by date, where the first item would be the oldest entry.
+
 def getStoryEdits(c, storyID):
     c.execute('SELECT * FROM story_edits WHERE storyID = ? ORDER BY datetime(timestamp) ASC'
               , (storyID, ))
@@ -8,13 +10,14 @@ def getStoryEdits(c, storyID):
 
 
 # returns story's latest update. - a tuple
+# It does so by first getting all story edits, sorted ascending by date, and taking the latest one.
 
 def getLatestStoryEdit(c, storyID):
     edits = getStoryEdits(c, storyID)
     return edits[-1]
 
 
-# EDIT STORIES
+# edits a story by asking for all the information in an entry, and inserts it into the story_edits table.
 
 def addToStory(
     c,
@@ -28,6 +31,7 @@ def addToStory(
 
 
 # returns all the stories this user has edited (can Read)
+# does this by selecting all stories where its' id is in the (list of stories that the user has edited)
 
 def getStoriesEdited(c, userID):
     c.execute('SELECT * FROM stories where storyID IN (SELECT storyID FROM story_edits WHERE userID = ?)'
@@ -36,6 +40,7 @@ def getStoriesEdited(c, userID):
 
 
 # returns all the stories this user has not edited (cannot Read)
+# does this by selecting all stories where its' id is not in the (list of stories that the user has edited)
 
 def getStoriesNotEdited(c, userID):
     c.execute('SELECT * FROM stories where storyID NOT IN (SELECT storyID FROM story_edits WHERE userID = ?)'
@@ -43,13 +48,15 @@ def getStoriesNotEdited(c, userID):
     return c.fetchall()
 
 
+# checks if a user has edited a story
+
 def hasEdited(c, userID, storyID):
     c.execute('SELECT * FROM story_edits WHERE userID = ? AND storyID = ?'
               , (userID, storyID))
     return c.fetchone() != None
 
 
-# DEBUG:
+# debug function to test if databse funcitons are working
 
 def debugAdd(c):
     dbfunctions.dropTables(c)
