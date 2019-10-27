@@ -149,7 +149,6 @@ Fixed part of sitemap, most recent version in docs.
 caiK -- 2019-10-26 23:55
 Added comments for dbeditfunctions.py, uneditedstories.html, edit.html, and formatted all python files to pep8
 
-
 caiK -- 2019-10-27 00:23
   Fixed an important loophole:
     # a loophole where a user can create a story
@@ -159,3 +158,12 @@ caiK -- 2019-10-27 00:23
     # and sign back in as the original author (set session's userID to original author's ID)
     # and then on tab1 the person can press submit, which would set this edit as the original author.
    This was fixed by checking if the user edited the story again while submitting in the form.
+
+caiK -- 2019-10-27 4:20
+  Made the website look noice by having tables instead of lists, and now cut off story titles with length > 29 to prevent clutter.
+  Made the query in the search box in the search results page just in case people have typos andthey don't have to retype
+  Centered lists and heading
+  Added 'toolbar' on homepage for easier navigation, instead of scrolling to the bottom of the page
+  Moved searchbar on search results page to the top
+  Fix for formatted text showing up un-formatted
+  
