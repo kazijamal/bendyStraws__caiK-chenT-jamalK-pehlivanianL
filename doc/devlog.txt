@@ -165,4 +165,5 @@ caiK -- 2019-10-27 4:20
   Centered lists and heading
   Added 'toolbar' on homepage for easier navigation, instead of scrolling to the bottom of the page
   Moved searchbar on search results page to the top
+  Fix for formatted text showing up un-formatted
   
