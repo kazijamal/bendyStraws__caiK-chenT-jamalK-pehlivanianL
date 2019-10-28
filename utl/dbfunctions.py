@@ -1,13 +1,10 @@
 # used to debug databases (ie. tables)
 def createTables(c):
-    c.execute('CREATE TABLE IF NOT EXISTS stories (storyID INTEGER PRIMARY KEY, name TEXT)'
-              )
+    c.execute('CREATE TABLE IF NOT EXISTS stories (storyID INTEGER PRIMARY KEY, name TEXT)')
 
-    c.execute('CREATE TABLE IF NOT EXISTS story_edits (storyID INTEGER, userID INTEGER, username STRING, content TEXT, timestamp DATETIME)'
-              )
+    c.execute('CREATE TABLE IF NOT EXISTS story_edits (storyID INTEGER, userID INTEGER, username STRING, content TEXT, timestamp DATETIME)')
 
-    c.execute('CREATE TABLE IF NOT EXISTS users (userID INTEGER PRIMARY KEY, username TEXT, password TEXT)'
-              )
+    c.execute('CREATE TABLE IF NOT EXISTS users (userID INTEGER PRIMARY KEY, username TEXT, password TEXT)')
 
 # used to debug !
 def dropTables(c):
