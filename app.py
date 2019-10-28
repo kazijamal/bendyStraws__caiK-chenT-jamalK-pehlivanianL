@@ -97,7 +97,6 @@ def logout():
 def home():
     if checkAuth(): # if logged in
         storiesEdited = dbeditfunctions.getStoriesEdited(c,session['userID'])
-        print(storiesEdited)
         return render_template('home.html', storiesEdited=storiesEdited)
     else:
         return redirect(url_for('login'))
