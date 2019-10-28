@@ -120,7 +120,6 @@ def search():
                 stories.append(story + ("edited",))
             else:
                 stories.append(story + ("unedited",))
-        print(stories)
         #returns search results with either /story or /edit links depending on whether the current user has edited the story
         return render_template('search.html', query=query, stories=stories)
     else:
