@@ -8,9 +8,7 @@ app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
 #sets up database
-DIR = os.path.dirname(__file__)
-DIR += "/"
-DB_FILE = DIR + "odyssey.db"
+DB_FILE = "odyssey.db"
 db = sqlite3.connect(DB_FILE, check_same_thread=False) #open if file exists, otherwise create
 c = db.cursor() #facilitate db operations
 dbfunctions.createTables(c)
